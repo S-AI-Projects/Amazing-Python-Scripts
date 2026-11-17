@@ -18,11 +18,26 @@ bright_cyan = "\033[0;96m"
 board = [' ' for i in range(10)]
 
 
-def insertLetter(letter, pos):
+def insertLetter(letter, pos, target_board=None):
     '''
-    insert either 'O' or 'X' at perticular position
+    insert either 'O' or 'X' at particular position.
+
+    Worked Example Contract:
+      - Inputs:
+          letter (str): 'X' or 'O'.
+          pos (int): integer board index 1 to 9.
+          target_board (list, optional): target board list of 10 elements. Defaults to global `board`.
+      - Intermediate State:
+          Target board slot `target_board[pos]` is updated from its previous state (typically ' ') to `letter`.
+      - Result:
+          Returns target_board (or mutates global board in place).
+      - Preconditions:
+          - Line 25: global board / target board selected.
+          - Line 35: board[pos] = letter mutation executed.
     '''
-    board[pos] = letter
+    b = board if target_board is None else target_board
+    b[pos] = letter
+    return b
 
 
 def spaceIsFree(pos):
@@ -216,14 +231,15 @@ def main():
         print("Game over !!")
 
 
-main()
+if __name__ == "__main__":
+    main()
 
-while True:
-    print()
-    ans = input("Do want to play again 😀  ... ? (Y|N) : ")
-    print()  # next line
-    if ans.lower() == 'y' and ans.upper() == 'Y':
-        board = [' ' for i in range(10)]
-        main()
-    else:
-        break
+    while True:
+        print()
+        ans = input("Do want to play again 😀  ... ? (Y|N) : ")
+        print()  # next line
+        if ans.lower() == 'y' and ans.upper() == 'Y':
+            board = [' ' for i in range(10)]
+            main()
+        else:
+            break
