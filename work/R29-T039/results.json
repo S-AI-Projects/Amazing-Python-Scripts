@@ -1,0 +1,66 @@
+{
+  "task": "R29-T039",
+  "target": "Text-To-Speech/text-to-speech.py",
+  "tool_versions": {
+    "python": "3.13.17 (v3.13.17:64e080d3815, Oct 21 2026, 07:24:09) [Clang 21.0.0 (clang-2100.1.1.101)]",
+    "platform": "darwin"
+  },
+  "tests": [
+    {
+      "name": "smallest_valid_input_measurement",
+      "source_preconditions": "Text-To-Speech/text-to-speech.py lines 36-40",
+      "input": "a",
+      "measurements": {
+        "text_length": 1,
+        "char_operations": 1,
+        "word_count": 1
+      },
+      "passed": true
+    },
+    {
+      "name": "ordinary_input_measurement",
+      "source_preconditions": "Text-To-Speech/text-to-speech.py lines 36-40",
+      "input": "Convert your Text into Voice",
+      "measurements": {
+        "text_length": 28,
+        "char_operations": 28,
+        "word_count": 5
+      },
+      "passed": true
+    },
+    {
+      "name": "linear_scaling_series",
+      "source_preconditions": "Text-To-Speech/text-to-speech.py lines 36-40",
+      "complexity": "O(N)",
+      "scaling_series": [
+        {
+          "input_size": 10,
+          "operations": 10
+        },
+        {
+          "input_size": 50,
+          "operations": 50
+        },
+        {
+          "input_size": 100,
+          "operations": 100
+        },
+        {
+          "input_size": 200,
+          "operations": 200
+        },
+        {
+          "input_size": 500,
+          "operations": 500
+        }
+      ],
+      "passed": true
+    }
+  ],
+  "unittest_run": {
+    "tests_run": 3,
+    "was_successful": true,
+    "errors_count": 0,
+    "failures_count": 0
+  }
+}
