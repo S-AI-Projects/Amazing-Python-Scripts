@@ -1,0 +1,39 @@
+{
+  "task": "R29-T038",
+  "target": "GUI-Password-Generator/generator.py",
+  "tool_versions": {
+    "python": "3.13.17 (v3.13.17:64e080d3815, Oct 21 2026, 07:24:09) [Clang 21.0.0 (clang-2100.1.1.101)]",
+    "platform": "darwin"
+  },
+  "tests": [
+    {
+      "name": "absent_result_failure_branch",
+      "source_preconditions": "GUI-Password-Generator/generator.py lines 55, 80",
+      "input": {
+        "strength_val": -1,
+        "length_val": 0
+      },
+      "expected_sentinel": null,
+      "actual_result": null,
+      "caller_state_cleared": true,
+      "passed": true
+    },
+    {
+      "name": "ordinary_call_succeeds_after_failure",
+      "source_preconditions": "GUI-Password-Generator/generator.py lines 69, 80",
+      "input": {
+        "strength_val": 0,
+        "length_val": 10
+      },
+      "expected_length": 10,
+      "actual_length": 10,
+      "passed": true
+    }
+  ],
+  "unittest_run": {
+    "tests_run": 2,
+    "was_successful": true,
+    "errors_count": 0,
+    "failures_count": 0
+  }
+}
