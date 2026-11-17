@@ -1,0 +1,104 @@
+{
+  "task": "R29-T032",
+  "target": "Blackjack/blackjack.py",
+  "tool_versions": {
+    "python": "3.13.17 (v3.13.17:64e080d3815, Oct 21 2026, 07:24:09) [Clang 21.0.0 (clang-2100.1.1.101)]",
+    "platform": "darwin"
+  },
+  "boundary_table": {
+    "suits_contract": [
+      "Hearts",
+      "Diamonds",
+      "Spades",
+      "Clubs"
+    ],
+    "ranks_contract": [
+      "Two",
+      "Three",
+      "Four",
+      "Five",
+      "Six",
+      "Seven",
+      "Eight",
+      "Nine",
+      "Ten",
+      "Jack",
+      "Queen",
+      "King",
+      "Ace"
+    ],
+    "smallest_supported": {
+      "suit": "Hearts",
+      "rank": "Two"
+    },
+    "upper_supported": {
+      "suit": "Clubs",
+      "rank": "Ace"
+    }
+  },
+  "tests": [
+    {
+      "name": "smallest_valid_boundary_input",
+      "source_preconditions": "Blackjack/blackjack.py lines 25, 29, 35, 36",
+      "input": {
+        "suit": "Hearts",
+        "rank": "Two"
+      },
+      "expected": {
+        "suit": "Hearts",
+        "rank": "Two",
+        "str": "Two of Hearts"
+      },
+      "actual": {
+        "suit": "Hearts",
+        "rank": "Two",
+        "str": "Two of Hearts"
+      },
+      "passed": true
+    },
+    {
+      "name": "ordinary_interior_input",
+      "source_preconditions": "Blackjack/blackjack.py lines 25, 29, 35, 36",
+      "input": {
+        "suit": "Spades",
+        "rank": "Seven"
+      },
+      "expected": {
+        "suit": "Spades",
+        "rank": "Seven",
+        "str": "Seven of Spades"
+      },
+      "actual": {
+        "suit": "Spades",
+        "rank": "Seven",
+        "str": "Seven of Spades"
+      },
+      "passed": true
+    },
+    {
+      "name": "upper_supported_boundary_input",
+      "source_preconditions": "Blackjack/blackjack.py lines 25, 29, 35, 36",
+      "input": {
+        "suit": "Clubs",
+        "rank": "Ace"
+      },
+      "expected": {
+        "suit": "Clubs",
+        "rank": "Ace",
+        "str": "Ace of Clubs"
+      },
+      "actual": {
+        "suit": "Clubs",
+        "rank": "Ace",
+        "str": "Ace of Clubs"
+      },
+      "passed": true
+    }
+  ],
+  "unittest_run": {
+    "tests_run": 4,
+    "was_successful": true,
+    "errors_count": 0,
+    "failures_count": 0
+  }
+}
