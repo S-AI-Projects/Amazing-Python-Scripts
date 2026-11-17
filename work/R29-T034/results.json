@@ -1,0 +1,80 @@
+{
+  "task": "R29-T034",
+  "target": "Restaurant-Management-System/Restaurant-Management-System.py",
+  "tool_versions": {
+    "python": "3.13.17 (v3.13.17:64e080d3815, Oct 21 2026, 07:24:09) [Clang 21.0.0 (clang-2100.1.1.101)]",
+    "platform": "darwin"
+  },
+  "tests": [
+    {
+      "name": "smallest_valid_input_btnclick",
+      "source_preconditions": "Restaurant-Management-System/Restaurant-Management-System.py lines 25, 26, 28",
+      "input": 0,
+      "expected": "0",
+      "actual": "0",
+      "passed": true
+    },
+    {
+      "name": "ordinary_input_btnclick",
+      "source_preconditions": "Restaurant-Management-System/Restaurant-Management-System.py lines 25, 26, 28",
+      "input": "+",
+      "expected": "12+",
+      "actual": "12+",
+      "passed": true
+    },
+    {
+      "name": "property_invariant_100_random_cases",
+      "source_preconditions": "Restaurant-Management-System/Restaurant-Management-System.py lines 25, 26, 28",
+      "samples_count": 100,
+      "passed": true,
+      "preview_samples": [
+        {
+          "step": 0,
+          "token": "+",
+          "prev": "",
+          "expected": "+",
+          "actual": "+"
+        },
+        {
+          "step": 1,
+          "token": "1",
+          "prev": "+",
+          "expected": "+1",
+          "actual": "+1"
+        },
+        {
+          "step": 2,
+          "token": "0",
+          "prev": "+1",
+          "expected": "+10",
+          "actual": "+10"
+        },
+        {
+          "step": 3,
+          "token": "-",
+          "prev": "+10",
+          "expected": "+10-",
+          "actual": "+10-"
+        },
+        {
+          "step": 4,
+          "token": "4",
+          "prev": "+10-",
+          "expected": "+10-4",
+          "actual": "+10-4"
+        }
+      ]
+    },
+    {
+      "name": "mutant_invariant_violation_check",
+      "description": "Verifies that breaking concatenation is detected",
+      "passed": true
+    }
+  ],
+  "unittest_run": {
+    "tests_run": 3,
+    "was_successful": true,
+    "errors_count": 0,
+    "failures_count": 0
+  }
+}
