@@ -1,0 +1,66 @@
+{
+  "task": "R29-T035",
+  "target": "Image to ASCII Art/app.py",
+  "tool_versions": {
+    "python": "3.13.17 (v3.13.17:64e080d3815, Oct 21 2026, 07:24:09) [Clang 21.0.0 (clang-2100.1.1.101)]",
+    "platform": "darwin"
+  },
+  "tests": [
+    {
+      "name": "smallest_valid_input_resize_image",
+      "source_preconditions": "Image to ASCII Art/app.py lines 24-27",
+      "input": {
+        "original_size": [
+          1,
+          1
+        ],
+        "new_width": 1
+      },
+      "expected": [
+        1,
+        1
+      ],
+      "actual": [
+        1,
+        1
+      ],
+      "passed": true
+    },
+    {
+      "name": "ordinary_input_resize_image",
+      "source_preconditions": "Image to ASCII Art/app.py lines 24-27",
+      "input": {
+        "original_size": [
+          800,
+          600
+        ],
+        "new_width": 100
+      },
+      "expected": [
+        100,
+        75
+      ],
+      "actual": [
+        100,
+        75
+      ],
+      "passed": true
+    },
+    {
+      "name": "repeatable_idempotency_check",
+      "source_preconditions": "Image to ASCII Art/app.py lines 24-27",
+      "runs_count": 5,
+      "expected_each": [
+        50,
+        25
+      ],
+      "passed": true
+    }
+  ],
+  "unittest_run": {
+    "tests_run": 3,
+    "was_successful": true,
+    "errors_count": 0,
+    "failures_count": 0
+  }
+}

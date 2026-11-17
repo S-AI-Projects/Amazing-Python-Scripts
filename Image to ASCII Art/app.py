@@ -1,9 +1,28 @@
-from PIL import Image
+try:
+    from PIL import Image
+except ImportError:
+    Image = None
 
 ASCII_CHARS = '@B%8WM#*oahkbdpwmZO0QCJYXzcvnxrjft/\|()1{}[]-_+~<>i!lI;:,"^`\'. '
 
 
 def resize_image(image, new_width=100):
+    """
+    Resizes an image preserving aspect ratio.
+
+    Contract:
+      - Inputs:
+          image: PIL-like Image object with attribute `size = (width, height)` and method `resize((w, h))`.
+          new_width (int): target width, default 100.
+      - Returns:
+          resized_image: new image instance with dimensions `(new_width, int(new_width * height / width))`.
+      - Isolation: Pure function; does not mutate the input image instance.
+      - Precondition source lines:
+          - Line 19: width, height = image.size.
+          - Line 20: ratio = height / width.
+          - Line 21: new_height = int(new_width * ratio).
+          - Line 22: resized_image = image.resize((new_width, new_height)).
+    """
     width, height = image.size
     ratio = height / width
     new_height = int(new_width * ratio)
