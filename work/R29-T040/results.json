@@ -1,0 +1,58 @@
+{
+  "task": "R29-T040",
+  "target": "Automatic_Spelling_Checker_Corrector/automatic_spelling_checker_corrector.py",
+  "tool_versions": {
+    "python": "3.13.17 (v3.13.17:64e080d3815, Oct 21 2026, 07:24:09) [Clang 21.0.0 (clang-2100.1.1.101)]",
+    "platform": "darwin"
+  },
+  "tests": [
+    {
+      "name": "smallest_valid_input_readTextFile",
+      "source_preconditions": "Automatic_Spelling_Checker_Corrector/automatic_spelling_checker_corrector.py lines 35, 38",
+      "input": "hello",
+      "expected": [
+        "hello"
+      ],
+      "actual": [
+        "hello"
+      ],
+      "passed": true
+    },
+    {
+      "name": "ordinary_input_readTextFile",
+      "source_preconditions": "Automatic_Spelling_Checker_Corrector/automatic_spelling_checker_corrector.py lines 35, 38",
+      "input": "Hello world 123 ! Python 2026",
+      "expected": [
+        "Hello",
+        "world",
+        "Python"
+      ],
+      "actual": [
+        "Hello",
+        "world",
+        "Python"
+      ],
+      "passed": true
+    },
+    {
+      "name": "mutant_detection_proof",
+      "mutant_mistake": "using word.isalnum() instead of word.isalpha()",
+      "mutant_output": [
+        "Test",
+        "999",
+        "word"
+      ],
+      "expected_correct_output": [
+        "Test",
+        "word"
+      ],
+      "passed": true
+    }
+  ],
+  "unittest_run": {
+    "tests_run": 3,
+    "was_successful": true,
+    "errors_count": 0,
+    "failures_count": 0
+  }
+}

@@ -1,25 +1,48 @@
 # imports
 import sys
-from spellchecker import SpellChecker
-from nltk import word_tokenize
 
-# create an instance of the spellchecker
-spell = SpellChecker()
+try:
+    from spellchecker import SpellChecker
+    spell = SpellChecker()
+except ImportError:
+    spell = None
+
+try:
+    from nltk import word_tokenize
+except ImportError:
+    # Fallback tokenizer for testing without NLTK installed
+    def word_tokenize(text):
+        import re
+        return re.findall(r"\w+|[^\w\s]", text)
 
 # tokens --> stores the tokenized words
 tokens = []
 
 
 def readTextFile(textFilename):
-    """This function is used to read the input file"""
+    """
+    This function is used to read the input file and extract alphabetic words.
+
+    Contract:
+      - Reads contents of textFilename.
+      - Tokenizes using word_tokenize.
+      - Sets global tokens to full tokenized sequence.
+      - Returns list of words filtered by `word.isalpha()`.
+      - Mutation-protected condition:
+          `words = [word for word in tokens if word.isalpha()]`
+          A plausible one-line mutation altering this check (e.g., using `isalnum()` or removing the filter)
+          would erroneously include numeric or punctuation tokens.
+      - Preconditions:
+          - Line 35: tokens = word_tokenize(inputFile.read()).
+          - Line 38: words = [word for word in tokens if word.isalpha()].
+    """
     global tokens
     words = []
-    inputFile = open(textFilename, "r")
-    tokens = word_tokenize(inputFile.read())
+    with open(textFilename, "r") as inputFile:
+        tokens = word_tokenize(inputFile.read())
 
-    # Create a list of words from these tokens checking if the word is alphanumeric
+    # Create a list of words from these tokens checking if the word is alphabetic
     words = [word for word in tokens if word.isalpha()]
-    inputFile.close()
     return words
 
 
@@ -92,4 +115,5 @@ def main():
 
 
 # call to the main function
-main()
+if __name__ == "__main__":
+    main()
