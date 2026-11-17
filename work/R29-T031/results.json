@@ -1,0 +1,52 @@
+{
+  "task": "R29-T031",
+  "target": "Songs-By-Artist/config.py",
+  "tool_versions": {
+    "python": "3.13.17 (v3.13.17:64e080d3815, Oct 21 2026, 07:24:09) [Clang 21.0.0 (clang-2100.1.1.101)]",
+    "platform": "darwin"
+  },
+  "tests": [
+    {
+      "name": "smallest_input_default_config",
+      "source_preconditions": "Songs-By-Artist/config.py lines 12-13, 16",
+      "input": null,
+      "expected": {
+        "client_id": "",
+        "secret_key": ""
+      },
+      "actual": {
+        "client_id": "",
+        "secret_key": ""
+      },
+      "passed": true
+    },
+    {
+      "name": "ordinary_credentials_input",
+      "source_preconditions": "Songs-By-Artist/config.py line 21",
+      "input": {
+        "client_id": "1234567890abcdef1234567890abcdef",
+        "secret_key": "abcdef1234567890abcdef1234567890"
+      },
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "name": "repeated_value_boundary_input",
+      "source_preconditions": "Songs-By-Artist/config.py line 21",
+      "input": {
+        "client_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "secret_key": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "expected": true,
+      "actual": true,
+      "passed": true
+    }
+  ],
+  "unittest_run": {
+    "tests_run": 3,
+    "was_successful": true,
+    "errors_count": 0,
+    "failures_count": 0
+  }
+}
