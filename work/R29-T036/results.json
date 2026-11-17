@@ -1,0 +1,41 @@
+{
+  "task": "R29-T036",
+  "target": "Telegram Bot code/script.py",
+  "tool_versions": {
+    "python": "3.13.17 (v3.13.17:64e080d3815, Oct 21 2026, 07:24:09) [Clang 21.0.0 (clang-2100.1.1.101)]",
+    "platform": "darwin"
+  },
+  "tests": [
+    {
+      "name": "smallest_valid_input_start",
+      "source_preconditions": "Telegram Bot code/script.py lines 11, 25-27",
+      "input": {
+        "user_name": null
+      },
+      "expected": "Hello! I'm your Telegram bot. How can I assist you?",
+      "actual": "Hello! I'm your Telegram bot. How can I assist you?",
+      "passed": true
+    },
+    {
+      "name": "ordinary_input_start",
+      "source_preconditions": "Telegram Bot code/script.py lines 11, 25-27",
+      "input": {
+        "user_name": "Alice"
+      },
+      "expected": "Hello Alice! I'm your Telegram bot. How can I assist you?",
+      "actual": "Hello Alice! I'm your Telegram bot. How can I assist you?",
+      "passed": true
+    },
+    {
+      "name": "build_welcome_message_helper",
+      "source_preconditions": "Telegram Bot code/script.py lines 11-18",
+      "passed": true
+    }
+  ],
+  "unittest_run": {
+    "tests_run": 3,
+    "was_successful": true,
+    "errors_count": 0,
+    "failures_count": 0
+  }
+}
