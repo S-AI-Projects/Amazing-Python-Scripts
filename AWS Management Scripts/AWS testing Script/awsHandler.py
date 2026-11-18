@@ -1,5 +1,13 @@
+def _exact_instance_count_parameters(ami_id, count):
+    return {
+        "ImageId": ami_id,
+        "MinCount": count,
+        "MaxCount": count,
+    }
+
+
 def create_ec2(client, ami_id, count):
-    client.run_instances(ImageId=ami_id, MinCount=count, MaxCount=count)
+    client.run_instances(**_exact_instance_count_parameters(ami_id, count))
 
 
 def create_ec2_snapshots(client, volume_id):

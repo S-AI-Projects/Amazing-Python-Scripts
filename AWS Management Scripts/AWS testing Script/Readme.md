@@ -2,6 +2,8 @@
 
 This python script automatically generates a set of EC2 machine's with any demo ami Id that could be used in case of testing.
 
+The EC2 helper requests the exact number of instances supplied, setting both the minimum and maximum instance counts to that value.
+
 ## Installation
 
 First of all install [python]("https://www.python.org/downloads/") on your system.
@@ -25,5 +27,4 @@ You can find me at:-
 [Linkedin](https://www.linkedin.com/in/shantam-sultania-737084175/) or [Github](https://github.com/shantamsultania) .
 
 Happy coding ❤️ .
-
 

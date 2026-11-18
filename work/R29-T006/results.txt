@@ -1,0 +1,83 @@
+Source facts recorded before editing:
+- The README line 3 describes automatically generating EC2 machines for testing.
+- The awsHandler.create_ec2 public inputs are client, ami_id, and count.
+- Before refactoring, awsHandler.py line 2 calls run_instances with ImageId
+  equal to ami_id and both MinCount and MaxCount equal to count.
+- The helper does not return the AWS response; implicitly returns None.
+- It does not mutate client/ami_id/count itself; run_instances is the external
+  side effect. Runtime dependencies are boto3/AWS SDK client behavior; tests
+  use a fake client and do not import AWS SDK or contact a network.
+
+Baseline against the original implementation:
+the smallest count fixture (ami-smallest, 1) returned None and issued exactly
+{'ImageId': 'ami-smallest', 'MinCount': 1, 'MaxCount': 1}; the ordinary fixture
+(ami-ordinary, 3) returned None and issued exactly
+{'ImageId': 'ami-ordinary', 'MinCount': 3, 'MaxCount': 3}. Both tests passed.
+
+Focused AWS EC2 launch-parameter refactor checks
+Requested check command: python3 work/R29-T006/check.py
+Native test command: python3 -m unittest discover -s AWS Management Scripts/AWS testing Script/tests -p test_aws_handler.py -v
+Test configuration: no root Python test configuration exists; the project has no test runner for this item, so standard-library unittest is used.
+The EC2 SDK client is a fake that records run_instances calls; no AWS SDK, credentials, or live network access are used.
+Python version: 3.15.0 (main, Oct  9 2026, 11:16:41) [Clang 21.0.0 (clang-2100.3.34.2)]
+Unittest version: standard library bundled with this Python version
+Platform: macOS-26.5.1-arm64-arm-64bit-Mach-O
+Nonzero test count: 2
+Test process exit code: 0
+
+Literal fixture inputs, expected values, actual values, and test output:
+input=('ami-ordinary', 3), expected=(None, [{'ImageId': 'ami-ordinary', 'MinCount': 3, 'MaxCount': 3}]), actual=(None, [{'ImageId': 'ami-ordinary', 'MinCount': 3, 'MaxCount': 3}])
+input=('ami-smallest', 1), expected=(None, [{'ImageId': 'ami-smallest', 'MinCount': 1, 'MaxCount': 1}]), actual=(None, [{'ImageId': 'ami-smallest', 'MinCount': 1, 'MaxCount': 1}])
+test_ordinary_instance_count (test_aws_handler.CreateEc2RegressionTests.test_ordinary_instance_count) ... ok
+test_smallest_valid_instance_count (test_aws_handler.CreateEc2RegressionTests.test_smallest_valid_instance_count) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.000s
+
+OK
+
+---
+Focused AWS EC2 launch-parameter refactor checks
+Requested check command: python3 work/R29-T006/check.py
+Native test command: python3 -m unittest discover -s AWS Management Scripts/AWS testing Script/tests -p test_aws_handler.py -v
+Test configuration: no root Python test configuration exists; the project has no test runner for this item, so standard-library unittest is used.
+The EC2 SDK client is a fake that records run_instances calls; no AWS SDK, credentials, or live network access are used.
+Python version: 3.15.0 (main, Oct  9 2026, 11:16:41) [Clang 21.0.0 (clang-2100.3.34.2)]
+Unittest version: standard library bundled with this Python version
+Platform: macOS-26.5.1-arm64-arm-64bit-Mach-O
+Nonzero test count: 2
+Test process exit code: 0
+
+Literal fixture inputs, expected values, actual values, and test output:
+input=('ami-ordinary', 3), expected=(None, [{'ImageId': 'ami-ordinary', 'MinCount': 3, 'MaxCount': 3}]), actual=(None, [{'ImageId': 'ami-ordinary', 'MinCount': 3, 'MaxCount': 3}])
+input=('ami-smallest', 1), expected=(None, [{'ImageId': 'ami-smallest', 'MinCount': 1, 'MaxCount': 1}]), actual=(None, [{'ImageId': 'ami-smallest', 'MinCount': 1, 'MaxCount': 1}])
+test_ordinary_instance_count (test_aws_handler.CreateEc2RegressionTests.test_ordinary_instance_count) ... ok
+test_smallest_valid_instance_count (test_aws_handler.CreateEc2RegressionTests.test_smallest_valid_instance_count) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.000s
+
+OK
+
+---
+Focused AWS EC2 launch-parameter refactor checks
+Requested check command: python3 work/R29-T006/check.py
+Native test command: python3 -m unittest discover -s AWS Management Scripts/AWS testing Script/tests -p test_aws_handler.py -v
+Test configuration: no root Python test configuration exists; the project has no test runner for this item, so standard-library unittest is used.
+The EC2 SDK client is a fake that records run_instances calls; no AWS SDK, credentials, or live network access are used.
+Python version: 3.15.0 (main, Oct  9 2026, 11:16:41) [Clang 21.0.0 (clang-2100.3.34.2)]
+Unittest version: standard library bundled with this Python version
+Platform: macOS-26.5.1-arm64-arm-64bit-Mach-O
+Nonzero test count: 2
+Test process exit code: 0
+
+Literal fixture inputs, expected values, actual values, and test output:
+input=('ami-ordinary', 3), expected=(None, [{'ImageId': 'ami-ordinary', 'MinCount': 3, 'MaxCount': 3}]), actual=(None, [{'ImageId': 'ami-ordinary', 'MinCount': 3, 'MaxCount': 3}])
+input=('ami-smallest', 1), expected=(None, [{'ImageId': 'ami-smallest', 'MinCount': 1, 'MaxCount': 1}]), actual=(None, [{'ImageId': 'ami-smallest', 'MinCount': 1, 'MaxCount': 1}])
+test_ordinary_instance_count (test_aws_handler.CreateEc2RegressionTests.test_ordinary_instance_count) ... ok
+test_smallest_valid_instance_count (test_aws_handler.CreateEc2RegressionTests.test_smallest_valid_instance_count) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.000s
+
+OK
