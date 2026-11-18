@@ -18,9 +18,15 @@ class myScraper:
         self.player = player
 
     def get_club_details(self, sections, level=0):
+        """Print club-career titles in page order.
+
+        For example, a "Club career" section with child "Barcelona" prints
+        both titles, followed by any titles nested under "Barcelona".
+        """
         for s in sections:
-            if 'Club career' in s.title:
-                print(s.title)
+            if 'Club career' not in s.title:
+                continue
+            print(s.title)
             for s in s.sections:
                 level = level + 1
                 print(s.title)

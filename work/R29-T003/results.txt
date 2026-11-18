@@ -1,0 +1,48 @@
+Focused Football-Player-Club-Info myScraper reference checks
+Requested check command: python3 work/R29-T003/check.py
+Native test command: python3 -m unittest discover -s Football-Player-Club-Info/tests -p test_my_scraper.py -v
+No repository-wide pytest/unittest configuration was found; the focused tests use standard-library unittest.
+Source contract: main.py lines 11-18 take a player name, fetch the corresponding English Wikipedia page, parse its text, and store the player without mutating that input. README lines 25-26 state that club-career sections are retrieved and printed. main.py lines 20-41 print the selected section titles in order; execute() returns None.
+Baseline minimal counterexample before the filter fix: player 'Fixture Player'; sections=[('Overview', [('Biography', [])])]; expected output=''; actual output='Biography\n'. This is one non-club root with one child and establishes the smallest mismatch. The ordinary baseline fixture also printed its non-club 'Early life' child before the club-career titles.
+Independent oracle: flatten only root sections whose title contains 'Club career', then append child and grandchild titles in fixture order. It does not call myScraper. Twenty small deterministic section trees are compared against this reference.
+External Wikipedia/API and parser dependencies are stubbed; no network request or live credentials are used. Each comparison uses fresh scraper and section objects and verifies input preservation.
+Python version: 3.15.0 (main, Oct  9 2026, 11:16:41) [Clang 21.0.0 (clang-2100.3.34.2)]
+Unittest version: standard library bundled with this Python version
+Platform: macOS-26.5.1-arm64-arm-64bit-Mach-O
+Nonzero test count: 4
+Independent small section-tree inputs compared: 20
+Test process exit code: 0
+
+Literal fixtures, expected versus actual outputs, and test output:
+minimal input='Fixture Player', expected_output='', actual_output=''
+player='Lionel Messi', expected_output='Club career\nBarcelona\n2004–2021\nInter Miami\n', actual_output='Club career\nBarcelona\n2004–2021\nInter Miami\n'
+player='A', sections=[], expected_output='', actual_output=''
+player='Fixture Player 0', expected_output='Club career\nClub 0\nSeason 0\n', actual_output='Club career\nClub 0\nSeason 0\n', return=None
+player='Fixture Player 1', expected_output='Club career\nTeam A 0\nYear A 0\nYear B 0\nTeam B 0\n', actual_output='Club career\nTeam A 0\nYear A 0\nYear B 0\nTeam B 0\n', return=None
+player='Fixture Player 2', expected_output='', actual_output='', return=None
+player='Fixture Player 3', expected_output='Club career 1\nTeam A 1\nYear A 1\nYear B 1\nTeam B 1\n', actual_output='Club career 1\nTeam A 1\nYear A 1\nYear B 1\nTeam B 1\n', return=None
+player='Fixture Player 4', expected_output='Club career\nClub 2\n', actual_output='Club career\nClub 2\n', return=None
+player='Fixture Player 5', expected_output='Club career\nTeam A 2\nYear A 2\nYear B 2\nTeam B 2\n', actual_output='Club career\nTeam A 2\nYear A 2\nYear B 2\nTeam B 2\n', return=None
+player='Fixture Player 6', expected_output='', actual_output='', return=None
+player='Fixture Player 7', expected_output='Club career 3\nTeam A 3\nYear A 3\nYear B 3\nTeam B 3\n', actual_output='Club career 3\nTeam A 3\nYear A 3\nYear B 3\nTeam B 3\n', return=None
+player='Fixture Player 8', expected_output='Club career\nClub 4\n', actual_output='Club career\nClub 4\n', return=None
+player='Fixture Player 9', expected_output='Club career\nTeam A 4\nYear A 4\nYear B 4\nTeam B 4\n', actual_output='Club career\nTeam A 4\nYear A 4\nYear B 4\nTeam B 4\n', return=None
+player='Fixture Player 10', expected_output='', actual_output='', return=None
+player='Fixture Player 11', expected_output='Club career 5\nTeam A 5\nYear A 5\nYear B 5\nTeam B 5\n', actual_output='Club career 5\nTeam A 5\nYear A 5\nYear B 5\nTeam B 5\n', return=None
+player='Fixture Player 12', expected_output='Club career\nClub 6\nSeason 6\n', actual_output='Club career\nClub 6\nSeason 6\n', return=None
+player='Fixture Player 13', expected_output='Club career\nTeam A 6\nYear A 6\nYear B 6\nTeam B 6\n', actual_output='Club career\nTeam A 6\nYear A 6\nYear B 6\nTeam B 6\n', return=None
+player='Fixture Player 14', expected_output='', actual_output='', return=None
+player='Fixture Player 15', expected_output='Club career 7\nTeam A 7\nYear A 7\nYear B 7\nTeam B 7\n', actual_output='Club career 7\nTeam A 7\nYear A 7\nYear B 7\nTeam B 7\n', return=None
+player='Fixture Player 16', expected_output='Club career\nClub 8\n', actual_output='Club career\nClub 8\n', return=None
+player='Fixture Player 17', expected_output='Club career\nTeam A 8\nYear A 8\nYear B 8\nTeam B 8\n', actual_output='Club career\nTeam A 8\nYear A 8\nYear B 8\nTeam B 8\n', return=None
+player='Fixture Player 18', expected_output='', actual_output='', return=None
+player='Fixture Player 19', expected_output='Club career 9\nTeam A 9\nYear A 9\nYear B 9\nTeam B 9\n', actual_output='Club career 9\nTeam A 9\nYear A 9\nYear B 9\nTeam B 9\n', return=None
+test_non_club_section_child_is_excluded_minimal_counterexample (test_my_scraper.MyScraperReferenceTests.test_non_club_section_child_is_excluded_minimal_counterexample) ... ok
+test_ordinary_player_and_club_career_section (test_my_scraper.MyScraperReferenceTests.test_ordinary_player_and_club_career_section) ... ok
+test_smallest_player_input_has_no_section_output (test_my_scraper.MyScraperReferenceTests.test_smallest_player_input_has_no_section_output) ... ok
+test_twenty_small_section_trees_match_independent_reference (test_my_scraper.MyScraperReferenceTests.test_twenty_small_section_trees_match_independent_reference) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.002s
+
+OK
