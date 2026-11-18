@@ -8,6 +8,7 @@ import database
 
 # creating a function to return date and time
 def getdate():
+    """Return the clock's datetime unchanged; this wrapper has no empty-result branch."""
     return datetime.datetime.now()
 
 
