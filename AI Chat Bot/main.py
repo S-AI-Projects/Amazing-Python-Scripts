@@ -15,7 +15,12 @@ headers = {
 }
 
 
+# The main loop sets this flag for each request before starting the animation.
+done = False
+
+
 def animate():
+    """Render spinner frames until the caller sets the shared done flag."""
     for c in itertools.cycle(['|', '/', '-', '\\']):
         if done:
             break

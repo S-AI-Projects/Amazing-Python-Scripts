@@ -1,0 +1,27 @@
+Focused AI Chat Bot animate deterministic checks
+Requested check command: python3 work/R29-T005/check.py
+Native test command: python3 -m unittest discover -s AI Chat Bot/tests -p test_animate.py -v
+No repository-wide pytest/unittest configuration was found; the focused tests use standard-library unittest.
+Source facts: animate() at main.py lines 22-33 has no parameters or return value. It reads the shared done flag at line 25, emits spinner frames from the cycle at lines 24 and 27, sleeps at line 29, and clears the line at line 32. Its observable dependencies are the done flag, stdout, and time.sleep. The test controls done and mocks sleep/stdout; network and GUI are not invoked. The module initializes done to False at line 19.
+The supplied headers and payload fixture belongs to ask() at main.py lines 36-39, not animate().
+Literal invocations: animate() with one controlled frame (smallest run) and animate() with three controlled frames (ordinary run). Expected output strings are asserted exactly; the one-frame input is repeated twice and then repeated after the ordinary run to check isolation.
+The focused tests mock imports of requests and pyfiglet because the declared packages are not installed; no external API request or interactive GUI/user input is used.
+Python version: 3.15.0 (main, Oct  9 2026, 11:16:41) [Clang 21.0.0 (clang-2100.3.34.2)]
+Unittest version: standard library bundled with this Python version
+Platform: macOS-26.5.1-arm64-arm-64bit-Mach-O
+Nonzero test count: 2
+Test process exit code: 0
+
+Literal inputs, expected values, actual values, and test output:
+initial done expected=False, actual=False
+smallest animate run expected=(None, '\r|\r', 1), actual=(None, '\r|\r', 1)
+repeated smallest run expected=(None, '\r|\r', 1), actual=(None, '\r|\r', 1)
+ordinary animate run expected=(None, '\r|\r/\r-\r', 3), actual=(None, '\r|\r/\r-\r', 3)
+smallest after ordinary expected=(None, '\r|\r', 1), actual=(None, '\r|\r', 1)
+test_completion_flag_starts_false (test_animate.AnimateTests.test_completion_flag_starts_false) ... ok
+test_smallest_run_repeats_identically_and_isolated_from_later_run (test_animate.AnimateTests.test_smallest_run_repeats_identically_and_isolated_from_later_run) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.000s
+
+OK
