@@ -8,6 +8,7 @@ from tkinter.tix import Tree
 def game(comp, mine):
     if (comp == mine):
         return None
+    # Keep each winning matchup paired with its explicit True result.
     if (comp == 'snake' and mine == 'gun'):
         return True
     elif (comp == 'water' and mine == 'snake'):

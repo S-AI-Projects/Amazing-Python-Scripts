@@ -1,0 +1,54 @@
+Focused Snake-Water game contract and mutation checks
+Requested check command: python3 work/R29-T010/check.py
+Native test command: python3 -m unittest discover -s Snake-Water-Game/tests -p test_game.py -v
+No root test configuration exists; the focused tests use standard-library unittest.
+Source facts recorded before edits: game(comp, mine) takes two strings, returns None on a tie, True when the player wins, and False otherwise. The choice tuple is defined at source line 24. The function does not mutate its string arguments. It relies on random only in top-level game startup; import-time input/output and that random choice are mocked.
+Python version: 3.15.0 (main, Oct  9 2026, 11:16:41) [Clang 21.0.0 (clang-2100.3.34.2)]
+Unittest version: standard library bundled with this Python version
+Platform: macOS-26.5.1-arm64-arm-64bit-Mach-O
+Baseline test count: 2
+Baseline exit code: 0
+Baseline input/output transcript:
+input=('water', 'snake'), expected=True, actual_first=True, actual_second=True
+input=('gun', 'gun'), expected=None, actual_first=None, actual_second=None
+test_ordinary_input_water_beaten_by_snake (test_game.GameContractTests.test_ordinary_input_water_beaten_by_snake) ... ok
+test_smallest_valid_draw_returns_none (test_game.GameContractTests.test_smallest_valid_draw_returns_none) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.000s
+
+OK
+
+Mutation experiment: temporary copy changed the water-versus-snake comparison from mine == 'snake' to mine == 'water'.
+Mutant test command: python3 -m unittest test_game.GameContractTests.test_ordinary_input_water_beaten_by_snake -v
+Mutant exit code: 1
+Mutant detected by same named assertion: True
+Mutant input: comp='water', mine='snake'; independently expected=True; mutant actual=False.
+Mutant output:
+input=('water', 'snake'), expected=True, actual_first=False, actual_second=False
+test_ordinary_input_water_beaten_by_snake (test_game.GameContractTests.test_ordinary_input_water_beaten_by_snake) ... FAIL
+
+======================================================================
+FAIL: test_ordinary_input_water_beaten_by_snake (test_game.GameContractTests.test_ordinary_input_water_beaten_by_snake)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/mohidshaikh/firsttask/Snake-Water-Game/tests/test_game.py", line 74, in test_ordinary_input_water_beaten_by_snake
+    self.assert_game_result(comp, mine, expected)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mohidshaikh/firsttask/Snake-Water-Game/tests/test_game.py", line 49, in assert_game_result
+    self.assertEqual(
+    ~~~~~~~~~~~~~~~~^
+        first_actual,
+        ^^^^^^^^^^^^^
+    ...<2 lines>...
+        f"actual={first_actual!r}",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+AssertionError: False != True : input=('water', 'snake'); expected=True; actual=False
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (failures=1)
+The mutant exists only in a temporary directory and is not included in the final source.
