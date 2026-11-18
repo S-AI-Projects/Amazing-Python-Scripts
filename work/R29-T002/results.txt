@@ -1,0 +1,27 @@
+Focused Pdf2Video pdf2text boundary checks
+Requested check command: python3 work/R29-T002/check.py
+Native test command: python3 -m unittest discover -s Pdf2Video_Converter/tests -p test_pdf2text.py -v
+No repository-wide pytest/unittest configuration was found; the focused tests use standard-library unittest.
+Baseline result: before adding the docstring, the same two tests passed against the original implementation.
+Source boundary contract, from script.py lines 15-47: PDF_file is passed to convert_from_path at 500 DPI; the returned pages are iterated and each OCR string is appended, with '-\n' replaced by ''. Zero pages therefore return the initialized empty string; one page returns its OCR text after normalization. The source does not define invalid-input exception behavior.
+Boundary table (page sequence returned by convert_from_path):
+| Page count | Source contract | Expected return | Test |
+| 0 | No page loop iterations; initialized text is returned | '' | test_zero_pages_returns_empty_text |
+| 1 | Save and OCR one page, then normalize '-\n' | 'Boundarytext\n' | test_one_page_returns_ocr_text_with_existing_hyphen_normalization |
+External dependencies, PDF conversion, OCR, image I/O, and file deletion are mocked; import only loads the target module.
+Python version: 3.15.0 (main, Oct  9 2026, 11:16:41) [Clang 21.0.0 (clang-2100.3.34.2)]
+Unittest version: standard library bundled with this Python version
+Platform: macOS-26.5.1-arm64-arm-64bit-Mach-O
+Nonzero test count: 2
+Test process exit code: 0
+
+Literal fixture inputs, expected values, actual values, and test output:
+pdf2text('ordinary.pdf'), OCR='Boundary-\ntext\n', expected='Boundarytext\n', actual='Boundarytext\n'
+pdf2text('empty.pdf') expected='', actual=''
+test_one_page_returns_ocr_text_with_existing_hyphen_normalization (test_pdf2text.Pdf2TextBoundaryTests.test_one_page_returns_ocr_text_with_existing_hyphen_normalization) ... ok
+test_zero_pages_returns_empty_text (test_pdf2text.Pdf2TextBoundaryTests.test_zero_pages_returns_empty_text) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.001s
+
+OK

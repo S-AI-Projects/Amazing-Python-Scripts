@@ -10,7 +10,7 @@ import os
 
 
 def pdf2text(PDF_file):
-
+    """Return normalized OCR text; a conversion with zero pages yields ''."""
     # Getting all pages of Pdf
     pages = convert_from_path(PDF_file, 500)
 
