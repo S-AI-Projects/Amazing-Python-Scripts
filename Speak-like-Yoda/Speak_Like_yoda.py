@@ -4,10 +4,16 @@ import string
 
 def speak_like_yoda(sentence):
     """
-    Translate the input sentence into Yoda-speak.
+    Translate the input sentence into Yoda-speak and print the result.
 
     :param sentence: input string
-    :return: translation to Yoda-speak
+    :return: None
+
+    For n input characters, string processing and the shuffle loop take O(n)
+    work and O(n) auxiliary space: punctuation is a fixed set of 31 characters.
+    Counting each random index selection as constant-time gives a worst-case
+    O(n) bound; Python's rejection-based random selection makes total runtime
+    expected O(n), not a strict worst-case claim. Timings are observations only.
     """
     sentence = sentence.lower()
     for p in string.punctuation.replace("'", ''):

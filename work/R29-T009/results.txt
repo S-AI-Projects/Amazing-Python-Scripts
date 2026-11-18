@@ -1,0 +1,38 @@
+Focused speak_like_yoda contract and complexity checks
+Requested check command: python3 work/R29-T009/check.py
+Native test command: python3 -m unittest discover -s Speak-like-Yoda/tests -p test_speak_like_yoda.py -v
+Test configuration: no root Python test configuration exists; the project has no test runner for this item, so standard-library unittest is used.
+Source facts recorded before edits: the function takes one string, returns None, does not mutate its immutable input, shuffles a local word list using random, and prints to stdout. Import is side-effect free; direct script execution reads stdin. It uses only Python's standard-library random and string modules.
+Baseline before the complexity docstring change: 2 tests passed against the original source with no expected/actual mismatches.
+Python version: 3.15.0 (main, Oct  9 2026, 11:16:41) [Clang 21.0.0 (clang-2100.3.34.2)]
+Unittest version: standard library bundled with this Python version
+Platform: macOS-26.5.1-arm64-arm-64bit-Mach-O
+Nonzero test count: 2
+Test process exit code: 0
+
+Contract test inputs and expected versus actual results:
+ordinary input='Hello, brave Jedi!', seed=7, expected=(None, '\nYour Yodenglish sentence: \nJedi hello brave\n'), actual=(None, '\nYour Yodenglish sentence: \nJedi hello brave\n')
+smallest input='', expected=(None, '\nYour Yodenglish sentence: \n\n'), actual=(None, '\nYour Yodenglish sentence: \n\n')
+test_ordinary_input_with_fixed_shuffle_seed (test_speak_like_yoda.SpeakLikeYodaContractTests.test_ordinary_input_with_fixed_shuffle_seed) ... ok
+test_smallest_valid_input (test_speak_like_yoda.SpeakLikeYodaContractTests.test_smallest_valid_input) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.000s
+
+OK
+Complexity experiment
+Input-size variable: n = number of characters in the input sentence.
+Sizes are exact input character counts; each repetition gets a newly generated sentence from a deterministic local seed.
+Input generation seed base: 1729
+Shuffle seed base: 7100
+Repetitions per size: 5
+Timed interval: one speak_like_yoda call, after import, input creation, and random seeding; stdout is redirected to a no-op stream. Output verification occurs in a separate untimed call. This excludes process startup, input construction, terminal I/O, and compilation.
+Each timed call is followed by a fresh deterministic verification call; expected output is independently computed with translate/split/join.
+
+n characters | repetition ns (5) | median ns | range ns | input SHA-256s | expected/actual output SHA-256s
+         256 | [13791, 10042, 8958, 8500, 9041] |      9041 | 8500-13791 | ['691cc193f97b71286a9041d972aded5b022ca8214d5eb59be991515954e6186e', 'bcba467b1dbcbd4283496fb310a9604ce746ef72e3aab29dceaa01fa04b01e5b', '21d1fadddd271048a9c30b6c27da5f7a992cdbd16d7d4db31bc5fc3ec2ffef57', '062a68b3c59fa84d1d528dcbdf75753b182edf4e6c4110a99cedfd552d8a3f17', '370a1adc50772e26950102ade2f66086ed5ec0e612ced21819b444a39dd3e977'] | [('aa6026e415433f02ea67f8bc0c5e0acf9ad9840935e638384690c546365f2a0b', 'aa6026e415433f02ea67f8bc0c5e0acf9ad9840935e638384690c546365f2a0b'), ('07abcdd8417635c866680c5137a6808a753751f7d90e7e4a9c060c03cdb3c185', '07abcdd8417635c866680c5137a6808a753751f7d90e7e4a9c060c03cdb3c185'), ('0e38662c8d635754112646f902e2780a19ae0c8cb871f39eb623ff579d7ccabf', '0e38662c8d635754112646f902e2780a19ae0c8cb871f39eb623ff579d7ccabf'), ('2196f25934ebc57fcc5c4b740f15f70c119bc4663b327965ee3b4608ec6f51c6', '2196f25934ebc57fcc5c4b740f15f70c119bc4663b327965ee3b4608ec6f51c6'), ('4f687dd5bf8588ae82d37711c4f2fd998489e79d5762d309205fbfcb0fe91ba3', '4f687dd5bf8588ae82d37711c4f2fd998489e79d5762d309205fbfcb0fe91ba3')]
+       16384 | [440750, 420709, 425292, 419708, 421541] |    421541 | 419708-440750 | ['6506a633d1b2b25a432b5f71687464945c5f852597f6aceb96024517e68602b6', '69115deb6f687b6586b5322f46db61c67923eb4d98f1f221d4f35f49b4c21085', 'b24252677e6623e758a6671b9d1da3841fd898e30a19500b7d59f793c39b359e', '2f8606ec5b55169ca2d0b38b8eb9f96604a8d6fc820f4b9de18f58ebbc039b63', 'f51095b70c7e710e30600ec7daa6ff455be99cccf196d8468d65d9681ec87b4e'] | [('e093f4f687ca973717b745167b41033c39583cda10d3f6727c57f8a561113247', 'e093f4f687ca973717b745167b41033c39583cda10d3f6727c57f8a561113247'), ('44f429afd58e10bdfa801bbd9ec86ef4e4350ac0b7ec053ca9feaf48a6b01159', '44f429afd58e10bdfa801bbd9ec86ef4e4350ac0b7ec053ca9feaf48a6b01159'), ('ac0761bebf58a381b55f104cf6befc9c3da2b48759d7e35e0b801bf850591436', 'ac0761bebf58a381b55f104cf6befc9c3da2b48759d7e35e0b801bf850591436'), ('e9a1075e95e2e9e716bb02ce10691528cb5423c533c548a512a05886de829e86', 'e9a1075e95e2e9e716bb02ce10691528cb5423c533c548a512a05886de829e86'), ('49ae46dc3a6b3ed7ada450e3cfbe77774792f08d99d083d815af1fbb74a013be', '49ae46dc3a6b3ed7ada450e3cfbe77774792f08d99d083d815af1fbb74a013be')]
+      262144 | [7155584, 8303666, 7213625, 7524334, 6883500] |   7213625 | 6883500-8303666 | ['83a84216b3d4ada87af96ca25a76a24c966c9d71539f56a159c83c79e4bbaefd', 'a178d91b40bc0986c76945313d8e7c86a07a6cff75842b3cca326fe6a2260ddf', '8b946923fd0a6187c142e62ae606497712fe6c9992d55aa77d45a681620b0418', 'f05fe6429e11b81d58bc4da2819c889aac3ebddb5c8fe7565d6c19887a3bbf11', '3f3a1893efab66cd80c6b9937066b849a14f2112e241584145c46a5da9d98dbd'] | [('00adf0271a5ce6fad5e7a60c4decd59ec530f7919b6b1a52cfd14bc127af560f', '00adf0271a5ce6fad5e7a60c4decd59ec530f7919b6b1a52cfd14bc127af560f'), ('433199c105bd29ec39a522ebfd934b4677b3731fdb04308fb98e5a82d42430a0', '433199c105bd29ec39a522ebfd934b4677b3731fdb04308fb98e5a82d42430a0'), ('30392ddbfd18f48b4996124773541932c8111c3cd6040e0c1fbc5ad944d943f1', '30392ddbfd18f48b4996124773541932c8111c3cd6040e0c1fbc5ad944d943f1'), ('1b726150cbfb1c29f1a9213ef7399cd12b12867e7f9845d6d825fd23938ebf0e', '1b726150cbfb1c29f1a9213ef7399cd12b12867e7f9845d6d825fd23938ebf0e'), ('7e8b369d402cd865e42ae02413d53a67437e1c786d7f7220fcdbab6012f110e7', '7e8b369d402cd865e42ae02413d53a67437e1c786d7f7220fcdbab6012f110e7')]
+
+All observed cases passed correctness; timings are observations, not a pass/fail threshold.
+Code-based complexity: string processing and the shuffle loop perform O(n) work and use O(n) auxiliary space in the worst case, where n is input characters. The punctuation loop scans the string for a fixed 31 punctuation characters. Counting each random index selection as O(1) gives a worst-case O(n) bound; Python's rejection-based random selection makes total runtime expected O(n), not a strict worst-case claim. Timings are observations, not proof of the bound.
