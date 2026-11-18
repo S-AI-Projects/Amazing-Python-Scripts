@@ -1,0 +1,85 @@
+Contract inspection before changes:
+- Public input: no arguments; reads console input through builtins.input.
+- Result: returns the entered integer unchanged when it is in [1, 2, 3].
+- Mutation: get_user_input does not modify the global choice list.
+- External effects: prints validation feedback; importing the script also prompts
+  for a round and replay choice, which the focused test mocks.
+- Dependencies for this function: Python standard library/builtins only.
+
+Baseline against the original implementation, before the contract docstring:
+no mismatches; all 4 focused checks passed with expected values matching actuals.
+
+Focused get_user_input regression checks
+Requested check command: python3 work/R29-T001/check.py
+Native test command: python3 -m unittest discover -s Stone-Paper-Scissors-Game/tests -p test_get_user_input.py -v
+Python version: 3.15.0 (main, Oct  9 2026, 11:16:41) [Clang 21.0.0 (clang-2100.3.34.2)]
+Platform: macOS-26.5.1-arm64-arm-64bit-Mach-O
+Nonzero test count: 4
+Test process exit code: 0
+
+Inputs, expected results, and actual results are printed by each test:
+choice mutation: input=['3'], expected=(3, ['stone', 'paper', 'scissors']), actual=(3, ['stone', 'paper', 'scissors'])
+ordinary: input=['2'], expected=(2, ''), actual=(2, '')
+out-of-range retry: input=['4', '1'], expected=(1, 'Invalid input. Please enter a number between 1 and 3.\n'), actual=(1, 'Invalid input. Please enter a number between 1 and 3.\n')
+smallest valid: input=['1'], expected=(1, ''), actual=(1, '')
+test_input_does_not_mutate_choice_fixture (test_get_user_input.GetUserInputContractTests.test_input_does_not_mutate_choice_fixture) ... ok
+test_ordinary_input_returns_two (test_get_user_input.GetUserInputContractTests.test_ordinary_input_returns_two) ... ok
+test_out_of_range_input_retries_at_domain_boundary (test_get_user_input.GetUserInputContractTests.test_out_of_range_input_retries_at_domain_boundary) ... ok
+test_smallest_valid_input_returns_one (test_get_user_input.GetUserInputContractTests.test_smallest_valid_input_returns_one) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.000s
+
+OK
+
+---
+Focused get_user_input regression checks
+Requested check command: python3 work/R29-T001/check.py
+Native test command: python3 -m unittest discover -s Stone-Paper-Scissors-Game/tests -p test_get_user_input.py -v
+Test configuration: no root test configuration exists; use the standard-library unittest runner for the focused module.
+Python version: 3.15.0 (main, Oct  9 2026, 11:16:41) [Clang 21.0.0 (clang-2100.3.34.2)]
+Unittest version: standard library bundled with this Python version
+Platform: macOS-26.5.1-arm64-arm-64bit-Mach-O
+Nonzero test count: 4
+Test process exit code: 0
+
+Inputs, expected results, and actual results are printed by each test:
+choice mutation: input=['3'], expected=(3, ['stone', 'paper', 'scissors']), actual=(3, ['stone', 'paper', 'scissors'])
+ordinary: input=['2'], expected=(2, ''), actual=(2, '')
+out-of-range retry: input=['4', '1'], expected=(1, 'Invalid input. Please enter a number between 1 and 3.\n'), actual=(1, 'Invalid input. Please enter a number between 1 and 3.\n')
+smallest valid: input=['1'], expected=(1, ''), actual=(1, '')
+test_input_does_not_mutate_choice_fixture (test_get_user_input.GetUserInputContractTests.test_input_does_not_mutate_choice_fixture) ... ok
+test_ordinary_input_returns_two (test_get_user_input.GetUserInputContractTests.test_ordinary_input_returns_two) ... ok
+test_out_of_range_input_retries_at_domain_boundary (test_get_user_input.GetUserInputContractTests.test_out_of_range_input_retries_at_domain_boundary) ... ok
+test_smallest_valid_input_returns_one (test_get_user_input.GetUserInputContractTests.test_smallest_valid_input_returns_one) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.000s
+
+OK
+
+---
+Focused get_user_input regression checks
+Requested check command: python3 work/R29-T001/check.py
+Native test command: python3 -m unittest discover -s Stone-Paper-Scissors-Game/tests -p test_get_user_input.py -v
+Test configuration: no root test configuration exists; use the standard-library unittest runner for the focused module.
+Python version: 3.15.0 (main, Oct  9 2026, 11:16:41) [Clang 21.0.0 (clang-2100.3.34.2)]
+Unittest version: standard library bundled with this Python version
+Platform: macOS-26.5.1-arm64-arm-64bit-Mach-O
+Nonzero test count: 4
+Test process exit code: 0
+
+Inputs, expected results, and actual results are printed by each test:
+choice mutation: input=['3'], expected=(3, ['stone', 'paper', 'scissors']), actual=(3, ['stone', 'paper', 'scissors'])
+ordinary: input=['2'], expected=(2, ''), actual=(2, '')
+out-of-range retry: input=['4', '1'], expected=(1, 'Invalid input. Please enter a number between 1 and 3.\n'), actual=(1, 'Invalid input. Please enter a number between 1 and 3.\n')
+smallest valid: input=['1'], expected=(1, ''), actual=(1, '')
+test_input_does_not_mutate_choice_fixture (test_get_user_input.GetUserInputContractTests.test_input_does_not_mutate_choice_fixture) ... ok
+test_ordinary_input_returns_two (test_get_user_input.GetUserInputContractTests.test_ordinary_input_returns_two) ... ok
+test_out_of_range_input_retries_at_domain_boundary (test_get_user_input.GetUserInputContractTests.test_out_of_range_input_retries_at_domain_boundary) ... ok
+test_smallest_valid_input_returns_one (test_get_user_input.GetUserInputContractTests.test_smallest_valid_input_returns_one) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.000s
+
+OK

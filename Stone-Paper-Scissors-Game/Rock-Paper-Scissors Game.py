@@ -2,6 +2,7 @@ import random
 
 
 def get_user_input():
+    """Return a choice from 1 to 3 without mutating the game choices."""
     while True:
         try:
             ip = int(
