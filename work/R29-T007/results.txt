@@ -1,0 +1,27 @@
+Focused message_sending executable documentation checks
+Requested check command: python3 work/R29-T007/check.py
+Native test command: python3 -m unittest discover -s Amazon-Price-Tracker/tests -p test_message_sending.py -v
+Test configuration: no root Python test configuration exists; the project has no test runner for this item, so standard-library unittest is used.
+Source facts recorded before edits: message_sending(phone_number, title) reads the current datetime, builds an alert string, calls pywhatkit.sendwhatmsg with phone, message, hour, and minute + 1, returns None, and does not mutate its string arguments. External dependencies are datetime and pywhatkit; module import also prompts for input, makes an HTTP request, and starts a polling loop, all mocked/stopped by the focused test.
+Baseline against the original implementation: the smallest-title and ordinary fixtures passed (2 tests) with exact expected and actual call arguments.
+The separate request-header fixture is established at amazonprice.py line 20; message_sending does not read or mutate it.
+Manual ordinary trace: now=2024-01-02 14:08; title='Stainless Steel Bottle'; message='Price of Stainless Steel Bottle is fallen below the threshold amount. Click on the link below to buy the product!!!\\n\\n'; schedule=(14, 9).
+requests, BeautifulSoup, pywhatkit, input, and sleep are mocked; no network, WhatsApp, or long-running tracker loop is used.
+Python version: 3.15.0 (main, Oct  9 2026, 11:16:41) [Clang 21.0.0 (clang-2100.3.34.2)]
+Unittest version: standard library bundled with this Python version
+Platform: macOS-26.5.1-arm64-arm-64bit-Mach-O
+Nonzero test count: 3
+Test process exit code: 0
+
+Literal fixture inputs, expected values, actual values, and test output:
+docstring example: expected=TestResults(failed=0, attempted=3), actual=TestResults(failed=0, attempted=3)
+input=('+15551234567', 'Stainless Steel Bottle'), now=datetime.datetime(2024, 1, 2, 14, 8), expected=(None, [call('+15551234567', 'Price of Stainless Steel Bottle is fallen below the threshold amount. Click on the link below to buy the product!!!\n\n', 14, 9)]), actual=(None, [call('+15551234567', 'Price of Stainless Steel Bottle is fallen below the threshold amount. Click on the link below to buy the product!!!\n\n', 14, 9)])
+input=('+15551234567', ''), now=datetime.datetime(2024, 1, 2, 9, 41), expected=(None, [call('+15551234567', 'Price of  is fallen below the threshold amount. Click on the link below to buy the product!!!\n\n', 9, 42)]), actual=(None, [call('+15551234567', 'Price of  is fallen below the threshold amount. Click on the link below to buy the product!!!\n\n', 9, 42)])
+test_documented_example (test_message_sending.MessageSendingTests.test_documented_example) ... ok
+test_ordinary_input (test_message_sending.MessageSendingTests.test_ordinary_input) ... ok
+test_smallest_valid_input (test_message_sending.MessageSendingTests.test_smallest_valid_input) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.002s
+
+OK

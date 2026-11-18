@@ -27,6 +27,25 @@ soup = BeautifulSoup(page.content, "html.parser")
 
 
 def message_sending(phone_number, title):
+    """Schedule a WhatsApp price alert one minute after the current time.
+
+    The decisive state transition is from the current clock value to the
+    requested send time: the title is interpolated into the alert text, then
+    ``pywhatkit`` receives that text with ``now.minute + 1``.
+
+    Example (the clock and WhatsApp sender are mocked):
+
+    >>> from unittest.mock import patch
+    >>> fixed_now = datetime.datetime(2024, 1, 2, 9, 41)
+    >>> with patch.object(datetime, "datetime") as clock:
+    ...     clock.now.return_value = fixed_now
+    ...     with patch.object(pywhatkit, "sendwhatmsg") as send:
+    ...         result = message_sending("+15551234567", "")
+    ...         print(result)
+    ...         print(send.call_args)
+    None
+    call('+15551234567', 'Price of  is fallen below the threshold amount. Click on the link below to buy the product!!!\\n\\n', 9, 42)
+    """
     now = datetime.datetime.now()
     message = f"Price of {title} is fallen below the threshold amount. Click on the link below to buy the product!!!\n\n"
     pywhatkit.sendwhatmsg(phone_number, message, now.hour, now.minute + 1)
