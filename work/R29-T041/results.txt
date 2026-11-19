@@ -1,0 +1,11 @@
+test_full_candidate_set_boundary (__main__.PasswordGeneratorTests) ... ok
+test_ordinary_length (__main__.PasswordGeneratorTests) ... ok
+test_smallest_valid_length (__main__.PasswordGeneratorTests) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.001s
+
+OK
+Python: 3.9.6 (3.9.6 (default, May 22 2026, 11:13:45) )
+Command: python3 work/R29-T041/check.py
+Nonzero tests: 3
