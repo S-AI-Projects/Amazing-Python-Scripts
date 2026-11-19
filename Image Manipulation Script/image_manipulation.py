@@ -2,6 +2,18 @@ from PIL import Image
 
 
 def resize_image(input_image, output_image, new_size):
+    """
+    Resize an image to specified dimensions.
+
+    Example:
+    >>> resize_image('photo.jpg', 'small.jpg', (800, 600))
+    Image resized and saved successfully.
+
+    Decisive state transition:
+    Image.open loads original dimensions into memory.
+    image.resize transitions image dimensions to new_size.
+    resized_image.save persists the new dimensions to output_image.
+    """
     image = Image.open(input_image)
     resized_image = image.resize(new_size)
     resized_image.save(output_image)
@@ -22,16 +34,17 @@ def flip_image(input_image, output_image, flip_mode):
     print("Image flipped and saved successfully.")
 
 
-# Example usage: Resize, rotate, and flip an image
-input_file = 'input_image.jpg'
-resized_file = 'resized_image.jpg'
-rotated_file = 'rotated_image.jpg'
-flipped_file = 'flipped_image.jpg'
+if __name__ == '__main__':
+    # Example usage: Resize, rotate, and flip an image
+    input_file = 'input_image.jpg'
+    resized_file = 'resized_image.jpg'
+    rotated_file = 'rotated_image.jpg'
+    flipped_file = 'flipped_image.jpg'
 
-new_size = (800, 600)
-degrees_to_rotate = 90
-flip_mode = Image.FLIP_LEFT_RIGHT
+    new_size = (800, 600)
+    degrees_to_rotate = 90
+    flip_mode = Image.FLIP_LEFT_RIGHT
 
-resize_image(input_file, resized_file, new_size)
-rotate_image(input_file, rotated_file, degrees_to_rotate)
-flip_image(input_file, flipped_file, flip_mode)
+    resize_image(input_file, resized_file, new_size)
+    rotate_image(input_file, rotated_file, degrees_to_rotate)
+    flip_image(input_file, flipped_file, flip_mode)
