@@ -1,0 +1,13 @@
+test_25_small_normalized_inputs_against_floor_oracle (__main__.LandmarkPixelTests) ... ok
+test_ordinary_landmark (__main__.LandmarkPixelTests) ... ok
+test_smallest_image_origin (__main__.LandmarkPixelTests) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.000s
+
+OK
+Python: 3.9.6 (3.9.6 (default, May 22 2026, 11:13:45) )
+Command: python3 work/R29-T043/check.py
+Independent oracle: math.floor(x * width), math.floor(y * height)
+Cases: 25 grid inputs plus smallest and ordinary fixtures
+Nonzero tests: 3

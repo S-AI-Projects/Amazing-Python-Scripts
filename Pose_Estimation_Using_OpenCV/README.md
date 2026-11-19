@@ -8,4 +8,10 @@ Working Webcam (**NOTE:** you can also feed a pre-captured video by specifying t
 #Dependencies  
 OpenCV, MediaPipe
 
+## Landmark pixel coordinates
+
+For an in-frame normalized landmark `lm` and a frame of width `w` and height `h`, the script converts `(lm.x, lm.y)` to the integer pixel pair `(int(lm.x * w), int(lm.y * h))`. `landmark_to_pixel` isolates this calculation; its output is a two-integer `(x, y)` tuple and it does not mutate the landmark. The focused check compares this bounded non-negative domain against `math.floor` and does not open a camera or import OpenCV/MediaPipe.
+
+Run `python3 work/R29-T043/check.py` for the small result table and regression checks.
+
 

@@ -2,6 +2,11 @@ import cv2
 import mediapipe as mp
 import time
 
+
+def landmark_to_pixel(lm, width, height):
+    """Convert a normalized landmark to integer (x, y) image coordinates."""
+    return int(lm.x * width), int(lm.y * height)
+
 mpDraw = mp.solutions.drawing_utils
 mpPose = mp.solutions.pose
 pose = mpPose.Pose()
@@ -21,7 +26,7 @@ while True:
         for id, lm in enumerate(results.pose_landmarks.landmark):
             h, w, c = img.shape
             print(id, lm)
-            cx, cy = int(lm.x*w), int(lm.y*h)
+            cx, cy = landmark_to_pixel(lm, w, h)
             cv2.circle(img, (cx, cy), 5, (255, 255, 0), cv2.FILLED)
 
     cTime = time.time()
