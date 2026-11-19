@@ -19,7 +19,25 @@ PIPE = 'assets/sprites/pipe-green.png'
 
 
 def welcomeScreen():
-    '''Shows welcome images on the screen'''
+    '''
+    Shows welcome images on the screen
+
+    Contract:
+    Preconditions:
+    SCREENWIDTH is 289 set at line 8
+    SCREENHEIGHT is 511 set at line 9
+    GAME_SPRITES dictionary is defined at line 13
+    GAME_SOUNDS dictionary is defined at line 14
+
+    Inputs:
+    Events from pygame event queue
+
+    Output:
+    Returns None when space or up key is pressed
+
+    Mutations:
+    Does not mutate GAME_SPRITES or GAME_SOUNDS
+    '''
     playerx = int(SCREENWIDTH/5)
     playery = int((SCREENHEIGHT-GAME_SPRITES['player'].get_height())/2)
     messagex = int((SCREENWIDTH-GAME_SPRITES['message'].get_width())/2)
