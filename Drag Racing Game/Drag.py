@@ -1,6 +1,12 @@
 import time
 
 
+# Car simulation model
+# Representative race result for Car with top speed 200 and acceleration 20:
+# The car accelerates by 20 in gear 1 until speed reaches 160 at step 8.
+# At 160 speed it shifts to gear 2. In step 9 speed reaches 200 and the race finishes.
+
+
 class Car:
     def __init__(self, name, top_speed, acceleration):
         self.name = name

@@ -1,0 +1,11 @@
+test_boundary_high_acceleration (__main__.CarCrossCheckTests.test_boundary_high_acceleration) ... ok
+test_ordinary_input (__main__.CarCrossCheckTests.test_ordinary_input) ... ok
+test_smallest_valid_input (__main__.CarCrossCheckTests.test_smallest_valid_input) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.001s
+
+OK
+Python: 3.14.7 (v3.14.7:823f0323ee6, Aug  5 2026, 07:07:01) [Clang 21.0.0 (clang-2100.1.1.101)]
+Command: python3 work/R29-T013/check.py
+Nonzero tests: 3
