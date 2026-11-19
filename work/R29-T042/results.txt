@@ -1,0 +1,12 @@
+test_empty_result_is_supported (__main__.ScraperBoundaryTests) ... ok
+test_luxury_fallback_fields_and_size_boundary (__main__.ScraperBoundaryTests) ... ok
+test_smallest_valid_card_defaults_optional_fields (__main__.ScraperBoundaryTests) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.001s
+
+OK
+Python: 3.9.6 (3.9.6 (default, May 22 2026, 11:13:45) )
+Command: python3 work/R29-T042/check.py
+External I/O: requests, BeautifulSoup, and pandas boundary stubs
+Nonzero tests: 3

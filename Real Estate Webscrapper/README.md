@@ -24,6 +24,22 @@ ___
 
 ### Step 3
 - Use pandas to convert the list of dictionaries to csv file
+
+## Supported result boundaries
+
+The scraper requests the configured MagicBricks page with the `User-Agent` in `headers` (source lines 6–11), collects matching property cards (lines 16–21), and writes the resulting rows to CSV (lines 79–80).
+
+| Case | Supported behavior | Source contract |
+| --- | --- | --- |
+| No matching cards | Empty dataset `[]`, then an empty DataFrame is written | `complete_dataset = []` at line 16; append is inside the card loop at line 76 |
+| Standard card | Standard price and carpet-area selectors populate the corresponding fields | Lines 23–27 and 69–71 |
+| Luxury card | Luxury price, per-square-foot and carpet-area selectors are fallbacks | Lines 29–33, 41–48, and 72–74 |
+| Missing optional size | `Size` is `None` | Lines 50–54 |
+| Missing both optional price-per-square-foot selectors | `Pricepersqft` is `None` | Lines 35–48 |
+
+Each card needs a parseable price, title containing a sale marker, and carpet-area text from one of the supported selectors. The source does not define a stable rejection result when these required fields are missing, when the network request fails, or when the page markup changes; those cases are outside the supported contract. The boundary checks mock the request, parser results, and CSV writer, so no live site access or file write occurs.
+
+Run `python3 work/R29-T042/check.py` for empty, minimal-card, and luxury-card checks.
 ---
 
 ## Author
