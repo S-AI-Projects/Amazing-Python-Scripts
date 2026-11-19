@@ -1,0 +1,10 @@
+Search_File scaling observations
+Python: 3.9.6 (3.9.6 (default, May 22 2026, 11:13:45) )
+Input size n: number of files in five temporary directories; 1 in 4 names ends in .mp4.
+Timed region: list(search_files(root, '*.mp4')); tree creation and output comparison excluded.
+Each repetition uses a fresh tree and fixed seed 29049 + repetition; 5 repetitions per size.
+Times are observations only; correctness has no speed threshold.
+n files | median ms | min ms | max ms | all five ms
+20 | 0.111 | 0.109 | 0.119 | 0.109, 0.110, 0.111, 0.113, 0.119
+200 | 0.255 | 0.203 | 0.317 | 0.203, 0.211, 0.255, 0.271, 0.317
+1000 | 0.629 | 0.608 | 0.741 | 0.608, 0.622, 0.629, 0.644, 0.741
