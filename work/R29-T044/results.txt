@@ -1,0 +1,11 @@
+test_entire_three_by_three_initial_choice_domain (__main__.WinnerInvariantTests) ... ok
+test_fixed_seed_one_hundred_bounded_valid_rounds (__main__.WinnerInvariantTests) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.037s
+
+OK
+Python: 3.9.6 (3.9.6 (default, May 22 2026, 11:13:45) )
+Command: python3 work/R29-T044/check.py
+Cases: all 9 initial choice pairs plus 100 fixed-seed valid rounds
+Nonzero tests: 2

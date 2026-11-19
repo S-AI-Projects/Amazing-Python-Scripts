@@ -15,3 +15,7 @@ Rock-Paper-Scissors is a simple hand game usually played between two people. Eac
 3. The computer will randomly choose its option.
 
 4. The winner will be displayed on the screen.
+
+## Rule check
+
+The program redraws the computer's choice when it matches the user's choice, so each completed round has exactly one winner. With choices numbered Rock = 1, Paper = 2, Scissors = 3, the user wins for (1, 3), (2, 1), and (3, 2); the computer wins for the other distinct pairs. This is the standard rule described above. Run `python3 work/R29-T044/check.py` to check the full initial 3 × 3 choice domain (including the tie redraw path) and 100 additional fixed-seed rounds.
