@@ -1,0 +1,11 @@
+test_failure_branch_missing_image (__main__.NeonEffectFailureBehaviorTests.test_failure_branch_missing_image) ... ok
+test_ordinary_valid_call_succeeds_after_failure (__main__.NeonEffectFailureBehaviorTests.test_ordinary_valid_call_succeeds_after_failure) ... ok
+test_smallest_valid_input (__main__.NeonEffectFailureBehaviorTests.test_smallest_valid_input) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.001s
+
+OK
+Python: 3.14.7 (v3.14.7:823f0323ee6, Aug  5 2026, 07:07:01) [Clang 21.0.0 (clang-2100.1.1.101)]
+Command: python3 work/R29-T018/check.py
+Nonzero tests: 3
