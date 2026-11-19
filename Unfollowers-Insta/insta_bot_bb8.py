@@ -2,7 +2,10 @@ from selenium import webdriver
 from getpass import getpass
 import time
 
-# Class for the bot
+# Supported boundaries:
+# scroll_list initializes last_ht = 0 and ht = 1 at line 83.
+# The smallest scroll boundary is when height stays at 1 so the loop stops after 1 step.
+# get_unfollowers handles empty lists, partial overlaps, and completely disjoint follower sets.
 
 
 class InstaBot:
