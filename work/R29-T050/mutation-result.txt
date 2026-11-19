@@ -1,0 +1,37 @@
+Mutation: calendar.calendar(find_year) -> calendar.calendar(find_year + 1)
+Command: SHOWCAL_SOURCE=<temporary mutant> python3 work/R29-T050/check.py
+Exit status: 1
+Expected result: both named tests fail at the calendar-text assertion.
+
+Python: 3.9.6 (3.9.6 (default, May 22 2026, 11:13:45) )
+Command: python3 work/R29-T050/check.py
+Nonzero tests: 2
+test_ordinary_year_2024 (__main__.ShowCalContractTests) ... FAIL
+test_smallest_supported_year_one (__main__.ShowCalContractTests) ... FAIL
+
+======================================================================
+FAIL: test_ordinary_year_2024 (__main__.ShowCalContractTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/rishabshekhawat/Documents/Codex/2026-11-19/s/work/repo/work/R29-T050/check.py", line 111, in test_ordinary_year_2024
+    self.assert_calendar_case("2024", 2024, 35)
+  File "/Users/rishabshekhawat/Documents/Codex/2026-11-19/s/work/repo/work/R29-T050/check.py", line 101, in assert_calendar_case
+    self.assertEqual(output_label.options["text"], expected,
+AssertionError: '    [28 chars]  2025\n\n      January                   Febr[2095 chars]31\n' != '    [28 chars]  2024\n\n      January                   Febr[2125 chars]31\n'
+Diff is 4338 characters long. Set self.maxDiff to None to see it. : calendar text expected from expected-2024.txt; actual shown in unittest diff
+
+======================================================================
+FAIL: test_smallest_supported_year_one (__main__.ShowCalContractTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/rishabshekhawat/Documents/Codex/2026-11-19/s/work/repo/work/R29-T050/check.py", line 108, in test_smallest_supported_year_one
+    self.assert_calendar_case("1", 1, 36)
+  File "/Users/rishabshekhawat/Documents/Codex/2026-11-19/s/work/repo/work/R29-T050/check.py", line 101, in assert_calendar_case
+    self.assertEqual(output_label.options["text"], expected,
+AssertionError: '    [26 chars]     2\n\n      January                   Febr[2125 chars]31\n' != '    [26 chars]     1\n\n      January                   Febr[2071 chars]31\n'
+Diff is 4497 characters long. Set self.maxDiff to None to see it. : calendar text expected from expected-1.txt; actual shown in unittest diff
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.021s
+
+FAILED (failures=2)
