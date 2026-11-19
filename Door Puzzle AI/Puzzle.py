@@ -1,6 +1,11 @@
 import random
 
 
+# Protected condition:
+# generate_doors must return a list of exactly num_doors elements.
+# Exactly one element must be True (the prize door) and all others must be False.
+
+
 def generate_doors(num_doors):
     doors = [False] * num_doors
     prize_door = random.randint(0, num_doors - 1)
