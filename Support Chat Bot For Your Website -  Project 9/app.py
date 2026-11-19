@@ -1,3 +1,8 @@
+# Invariant properties:
+# 1. API key guard: If either API key is empty, no network index search is performed.
+# 2. Result count conservation: Returned documents count is bounded by document_count slider (0 to 5).
+# For document_count = 0 (the smallest valid input), exactly 0 results are returned.
+
 import streamlit as st
 from utils import *
 import constants
