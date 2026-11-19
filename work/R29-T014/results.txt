@@ -1,0 +1,12 @@
+test_deliberate_mutant_fails_invariant (__main__.SupportChatBotInvariantTests.test_deliberate_mutant_fails_invariant) ... ok
+test_invariant_across_random_inputs (__main__.SupportChatBotInvariantTests.test_invariant_across_random_inputs) ... ok
+test_ordinary_input (__main__.SupportChatBotInvariantTests.test_ordinary_input) ... ok
+test_smallest_valid_input (__main__.SupportChatBotInvariantTests.test_smallest_valid_input) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.000s
+
+OK
+Python: 3.14.7 (v3.14.7:823f0323ee6, Aug  5 2026, 07:07:01) [Clang 21.0.0 (clang-2100.1.1.101)]
+Command: python3 work/R29-T014/check.py
+Nonzero tests: 4
