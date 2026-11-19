@@ -1,12 +1,16 @@
 import speech_recognition as sr
 
 
-def convert_audio_to_text():
-    # Initialize the recognizer
-    r = sr.Recognizer()
+def convert_audio_to_text(recognizer=None, microphone=None):
+    # Initialize the recognizer or use injected one
+    if recognizer is None:
+        r = sr.Recognizer()
+    else:
+        r = recognizer
 
-    # Open the microphone and start recording
-    with sr.Microphone() as source:
+    # Open the microphone or use injected one
+    mic = sr.Microphone() if microphone is None else microphone
+    with mic as source:
         print("Speak something...")
         audio = r.listen(source)  # Record audio from the microphone
 
@@ -23,20 +27,21 @@ def convert_audio_to_text():
         print("Error: {0}".format(e))
 
 
-# Example usage
-# Call the function to convert audio to text
-audio_text = convert_audio_to_text()
-if audio_text:
-    print("You said:", audio_text)  # Print the converted text
+if __name__ == "__main__":
+    # Example usage
+    # Call the function to convert audio to text
+    audio_text = convert_audio_to_text()
+    if audio_text:
+        print("You said:", audio_text)  # Print the converted text
 
-# Manipulate the text for further operations
-if audio_text:
-    # Convert the text to lowercase
-    lowercase_text = audio_text.lower()
-    print("Lowercase text:", lowercase_text)
+    # Manipulate the text for further operations
+    if audio_text:
+        # Convert the text to lowercase
+        lowercase_text = audio_text.lower()
+        print("Lowercase text:", lowercase_text)
 
-    # Split the text into words
-    words = lowercase_text.split()
-    print("Words:", words)
+        # Split the text into words
+        words = lowercase_text.split()
+        print("Words:", words)
 
-    # Perform other operations on the text as needed
+        # Perform other operations on the text as needed
