@@ -1,0 +1,11 @@
+test_ordinary_elapsed_duration (__main__.ElapsedTimeTests) ... ok
+test_readme_documents_same_examples (__main__.ElapsedTimeTests) ... ok
+test_smallest_elapsed_duration (__main__.ElapsedTimeTests) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.000s
+
+OK
+Python: 3.9.6 (3.9.6 (default, May 22 2026, 11:13:45) )
+Command: python3 work/R29-T046/check.py
+Nonzero tests: 3

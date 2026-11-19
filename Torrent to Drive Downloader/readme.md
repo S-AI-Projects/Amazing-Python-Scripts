@@ -16,3 +16,9 @@ BY running *leech.ipynb* in google-colab you can manage to download any torrent 
 * iit can run upto 12 hours max if you keep it open and answer its capacha.
 
 ***Thank you***
+
+## Elapsed-time display
+
+After the download finishes, the notebook formats its elapsed duration as whole minutes and remaining seconds. The formatting calculation is isolated in `format_elapsed(seconds)` in the download cell: `divmod(int(seconds), 60)` returns the minute count and the remainder. For example, 0 seconds displays as `0 min : 0 sec`, and 125.9 seconds displays as `2 min : 5 sec`. The notebook keeps the `Elapsed Time: ` label and output format.
+
+Run `python3 work/R29-T046/check.py` to verify these examples without connecting to Google Drive or a torrent network.
