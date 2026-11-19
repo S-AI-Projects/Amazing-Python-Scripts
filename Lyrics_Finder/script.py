@@ -1,8 +1,13 @@
 import requests
 
 
+def build_lyrics_url(artist, title):
+    # Formats API URL for artist and title
+    return 'https://api.lyrics.ovh/v1/{}/{}'.format(artist, title)
+
+
 def find_lyrics(artist, title):
-    base_url = 'https://api.lyrics.ovh/v1/{}/{}'.format(artist, title)
+    base_url = build_lyrics_url(artist, title)
     response = requests.get(base_url)
 
     if response.status_code == 200:
