@@ -1,0 +1,4 @@
+N =   100 pixels | 50 iterations took 0.000352 seconds
+N =   400 pixels | 50 iterations took 0.000253 seconds
+N =  1600 pixels | 50 iterations took 0.000356 seconds
+N = 10000 pixels | 50 iterations took 0.001096 seconds
