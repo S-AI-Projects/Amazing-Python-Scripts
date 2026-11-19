@@ -1,0 +1,12 @@
+test_empty_path_failure_sets_expected_status (__main__.ChangeWallTests) ... ok
+test_failure_then_success_does_not_leak_external_state (__main__.ChangeWallTests) ... ok
+test_ordinary_path_succeeds (__main__.ChangeWallTests) ... ok
+test_smallest_valid_path_succeeds (__main__.ChangeWallTests) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.001s
+
+OK
+Python: 3.9.6 (3.9.6 (default, May 22 2026, 11:13:45) )
+Command: python3 work/R29-T045/check.py
+Nonzero tests: 4
