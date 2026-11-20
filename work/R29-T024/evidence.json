@@ -1,0 +1,51 @@
+{
+  "task_id": "R29-T024",
+  "command": "python3 work/R29-T024/check.py",
+  "target_file": "hexCalculator/hexCalculator.py",
+  "test_count": 6,
+  "failures": 0,
+  "errors": 0,
+  "successful": true,
+  "tool_versions": {
+    "python": "3.9.6",
+    "platform": "macOS-27.2.1-arm64-arm-64bit"
+  },
+  "property_checks": [
+    {
+      "property": "smallest_valid_input",
+      "precondition": "Line 25 (num1), Line 27 (result)",
+      "input": {
+        "val1": "0",
+        "val2": "0"
+      },
+      "expected": "Result: 0X0",
+      "actual": "Result: 0X0",
+      "status": "PASS"
+    },
+    {
+      "property": "ordinary_input",
+      "precondition": "Line 25 (num1), Line 27 (result)",
+      "input": {
+        "val1": "A",
+        "val2": "F"
+      },
+      "expected": "Result: 0X19",
+      "actual": "Result: 0X19",
+      "status": "PASS"
+    },
+    {
+      "property": "commutativity_invariant",
+      "invariant": "calculate_hex_add(a, b) == calculate_hex_add(b, a)",
+      "sample_count": 100,
+      "shrunk_counterexample": null,
+      "status": "PASS"
+    },
+    {
+      "property": "identity_element",
+      "invariant": "int(calculate_hex_add(a, '0'), 16) == int(a, 16)",
+      "sample_count": 50,
+      "status": "PASS"
+    }
+  ],
+  "runner_output": "test_gui_hex_add_integration_mocked (test_hex_calculator.TestHexAddProperty)\nMocks tkinter entry widgets and verifies hex_add updates output label. ... ok\ntest_invariant_commutativity_property (test_hex_calculator.TestHexAddProperty)\nAlgebraic invariant: Commutativity. ... ok\ntest_invariant_identity_property (test_hex_calculator.TestHexAddProperty)\nAlgebraic invariant: Identity element \"0\". ... ok\ntest_ordinary_input (test_hex_calculator.TestHexAddProperty)\nOrdinary input: \"A\" (10) and \"F\" (15). Sum = 25 -> 0x19 -> \"0X19\". ... ok\ntest_rejection_invalid_inputs (test_hex_calculator.TestHexAddProperty)\nNegative domain boundary: non-hex strings return 'Invalid Input'. ... ok\ntest_smallest_valid_input (test_hex_calculator.TestHexAddProperty)\nSmallest valid input: \"0\" and \"0\". ... ok\n\n----------------------------------------------------------------------\nRan 6 tests in 0.002s\n\nOK\n"
+}
