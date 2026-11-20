@@ -1,0 +1,45 @@
+{
+  "task_id": "R29-T028",
+  "command": "python3 work/R29-T028/check.py",
+  "target_file": "Image editor python script/Image_editing_script.py",
+  "test_count": 6,
+  "failures": 0,
+  "errors": 0,
+  "successful": true,
+  "tool_versions": {
+    "python": "3.9.6",
+    "platform": "macOS-27.2.1-arm64-arm-64bit"
+  },
+  "error_path_cases": [
+    {
+      "case": "smallest_valid_input",
+      "precondition": "Line 28 (HOME_OPTIONS)",
+      "input": "1",
+      "expected": "Flip the image.",
+      "actual": "Flip the image.",
+      "status": "PASS"
+    },
+    {
+      "case": "ordinary_input",
+      "input": "4",
+      "expected": "Blur the image",
+      "actual": "Blur the image",
+      "status": "PASS"
+    },
+    {
+      "case": "failure_out_of_bounds",
+      "input": "0",
+      "expected_exception": "ValueError",
+      "expected_message": "Invalid option '0': choice must be between 1 and 9",
+      "status": "PASS"
+    },
+    {
+      "case": "failure_invalid_string",
+      "input": "invalid",
+      "expected_exception": "ValueError",
+      "expected_message": "Invalid option 'invalid': choice must be between 1 and 9",
+      "status": "PASS"
+    }
+  ],
+  "runner_output": "test_failure_branch_empty_choice (test_image_editor.TestImageEditorErrorPaths)\nFailure branch: empty string choice ''. ... ok\ntest_failure_branch_invalid_numerical_choice (test_image_editor.TestImageEditorErrorPaths)\nFailure branch: choice outside [1, 9] (e.g. '0' or '10'). ... ok\ntest_failure_branch_non_numeric_choice (test_image_editor.TestImageEditorErrorPaths)\nFailure branch: non-numeric string choice (e.g. 'invalid'). ... ok\ntest_home_default_invocation (test_image_editor.TestImageEditorErrorPaths)\nVerifies default invocation home() displays all 9 options. ... ok\ntest_ordinary_valid_input (test_image_editor.TestImageEditorErrorPaths)\nOrdinary valid input: choice = '4'. ... ok\ntest_smallest_valid_input (test_image_editor.TestImageEditorErrorPaths)\nSmallest valid input: choice = '1'. ... ok\n\n----------------------------------------------------------------------\nRan 6 tests in 0.000s\n\nOK\n"
+}
