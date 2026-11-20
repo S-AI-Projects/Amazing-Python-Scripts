@@ -1,5 +1,64 @@
 import sys
 
+"""
+Definations Contract & Worked Example Specification:
+Class: Definations
+Function: trace_decimal_to_binary(decimal_val) -> dict
+Preconditions:
+  - Source anchor Line 28: decimal_number = 0
+  - Source anchor Line 33: binary_number = []
+  - Input represents a non-negative integer.
+Invariants:
+  - Preserves exact binary representations across all conversion methods.
+  - Step-by-step intermediate states record successive quotient divisions and remainders.
+"""
+
+
+def trace_decimal_to_binary(decimal_val):
+    """
+    Executable worked example explaining base conversion step-by-step from input to output.
+
+    Preconditions & Anchors:
+      - Line 28: decimal_number = 0
+      - Line 33: binary_number = []
+    """
+    # Step 1: Initialize inputs and anchors
+    decimal_number = 0
+    decimal_number = int(decimal_val)
+
+    # Step 2: Handle base case for 0
+    if decimal_number == 0:
+        binary_number = [0]
+        return {
+            "decimal": 0,
+            "binary_bits": binary_number,
+            "binary_str": "0",
+            "intermediate_steps": [{"dividend": 0, "quotient": 0, "remainder": 0}]
+        }
+
+    # Step 3: Successive division by 2 to gather remainders
+    binary_number = []
+    temp = decimal_number
+    steps = []
+    while temp > 0:
+        rem = temp % 2
+        quotient = temp // 2
+        # Record intermediate state
+        steps.append({"dividend": temp, "quotient": quotient, "remainder": rem})
+        binary_number.append(rem)
+        temp = quotient
+
+    # Step 4: Reverse bits from LSB to MSB ordering
+    binary_number.reverse()
+    binary_str = "".join(str(b) for b in binary_number)
+
+    return {
+        "decimal": decimal_number,
+        "binary_bits": binary_number,
+        "binary_str": binary_str,
+        "intermediate_steps": steps
+    }
+
 
 class Definations:
     '''Contains the actual logic for base conversion.
@@ -23,7 +82,7 @@ class Definations:
         return int(str(self.number), 8)
 
     def Decimal_to_Hexadecimal(self):
-        return hex(self.number)[2:]
+        return hex(int(self.number))[2:]
 
     def Hexadecimal_to_Decimal(self):
         return int(str(self.number), 16)

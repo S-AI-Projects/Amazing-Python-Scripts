@@ -1,0 +1,79 @@
+{
+  "task_id": "R29-T027",
+  "command": "python3 work/R29-T027/check.py",
+  "target_file": "Number Conversion/converter_script.py",
+  "test_count": 4,
+  "failures": 0,
+  "errors": 0,
+  "successful": true,
+  "tool_versions": {
+    "python": "3.9.6",
+    "platform": "macOS-27.2.1-arm64-arm-64bit"
+  },
+  "worked_example_traces": [
+    {
+      "case": "smallest_valid_input",
+      "precondition": "Line 28 (decimal_number = 0), Line 33 (binary_number = [])",
+      "input": 0,
+      "expected": {
+        "binary_str": "0",
+        "binary_bits": [
+          0
+        ]
+      },
+      "actual": {
+        "binary_str": "0",
+        "binary_bits": [
+          0
+        ]
+      },
+      "status": "PASS"
+    },
+    {
+      "case": "ordinary_input",
+      "input": 13,
+      "intermediate_steps": [
+        {
+          "dividend": 13,
+          "quotient": 6,
+          "remainder": 1
+        },
+        {
+          "dividend": 6,
+          "quotient": 3,
+          "remainder": 0
+        },
+        {
+          "dividend": 3,
+          "quotient": 1,
+          "remainder": 1
+        },
+        {
+          "dividend": 1,
+          "quotient": 0,
+          "remainder": 1
+        }
+      ],
+      "expected": {
+        "binary_str": "1101",
+        "binary_bits": [
+          1,
+          1,
+          0,
+          1
+        ]
+      },
+      "actual": {
+        "binary_str": "1101",
+        "binary_bits": [
+          1,
+          1,
+          0,
+          1
+        ]
+      },
+      "status": "PASS"
+    }
+  ],
+  "runner_output": "test_converter_formatting (test_converter.TestDefinationsWorkedExample)\nVerifies Converter wrapper output string. ... ok\ntest_definations_all_conversions_consistent (test_converter.TestDefinationsWorkedExample)\nVerifies standard conversions for base 2, 8, 10, 16. ... ok\ntest_ordinary_input_worked_example (test_converter.TestDefinationsWorkedExample)\nOrdinary input: decimal 13. ... ok\ntest_smallest_valid_input_worked_example (test_converter.TestDefinationsWorkedExample)\nSmallest valid input: decimal 0. ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 0.000s\n\nOK\n"
+}
