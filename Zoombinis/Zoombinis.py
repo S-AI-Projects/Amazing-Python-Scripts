@@ -6,13 +6,35 @@ ZOOMBINIS_PER_TEAM = 8
 
 # Functions
 
+"""
+Contract for setup_teams:
+Function: setup_teams(num_teams: int = 2, team_size: int = ZOOMBINIS_PER_TEAM, rng=None) -> list[list[int]]
+Inputs:
+  - num_teams (int): Number of teams to generate (default: 2).
+  - team_size (int): Number of Zoombinis per team (default: 8).
+  - rng (optional): Random number generator or callable; defaults to random.randint.
+Preconditions:
+  - Line 25: teams = [] initialized as an empty list.
+  - Line 27: team = [] initialized for each team index.
+  - Line 29: Each zoombini feature integer must be in range [1, 4].
+Outputs:
+  - Returns a list of `num_teams` lists, each containing `team_size` integers in range [1, 4].
+Invariants:
+  - Preserves output structure list[list[int]], shape (num_teams, team_size), and range 1 <= val <= 4.
+"""
 
-def setup_teams():
+
+def setup_teams(num_teams=2, team_size=ZOOMBINIS_PER_TEAM, rng=None):
+    if rng is None:
+        rand_func = random.randint
+    else:
+        rand_func = getattr(rng, 'randint', rng)
+
     teams = []
-    for i in range(2):
+    for i in range(num_teams):
         team = []
-        for _ in range(ZOOMBINIS_PER_TEAM):
-            team.append(random.randint(1, 4))
+        for _ in range(team_size):
+            team.append(rand_func(1, 4))
         teams.append(team)
     return teams
 
