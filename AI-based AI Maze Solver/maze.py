@@ -3,6 +3,32 @@ import random
 
 
 class MazeSolver:
+    """
+    AI-based Maze Solver using A* search.
+
+    Supported Domain Boundary Contract:
+    - Precondition Anchors:
+      - Line 7: self.maze = maze (reference to 2D grid)
+      - Line 8: self.rows = len(maze)
+      - Line 9: self.cols = len(maze[0]) (requires len(maze) >= 1)
+      - Line 10: self.start = (0, 0)
+      - Line 11: self.goal = (self.rows - 1, self.cols - 1)
+    - Valid Boundary (Smallest valid input):
+      1x1 grid: maze = [[0]] (or [[False]]).
+      start = (0, 0), goal = (0, 0). solve() returns [(0, 0)].
+    - Valid Interior (Ordinary input):
+      R x C grid with R >= 1, C >= 1 (e.g. 2x2, 3x3).
+    - Valid Boundaries (Dimensional):
+      - 1xN single-row grid (e.g. [[0, 0, 0]], goal = (0, N - 1))
+      - Nx1 single-column grid (e.g. [[0], [0], [0]], goal = (N - 1, 0))
+    - Valid Boundary (Unsolvable / Blocked):
+      When no path exists between start and goal, solve() returns None.
+    - Unsupported Boundary:
+      Empty list maze = [] raises IndexError at line 9 (len(maze[0])).
+    - Immutability:
+      Solver does not mutate caller's input maze structure.
+    """
+
     def __init__(self, maze):
         self.maze = maze
         self.rows = len(maze)
