@@ -1,0 +1,87 @@
+{
+  "task_id": "R29-T022",
+  "command": "python3 work/R29-T022/check.py",
+  "target_file": "Currency-Exchange-Rates/exchange_rates.py",
+  "test_count": 8,
+  "failures": 0,
+  "errors": 0,
+  "successful": true,
+  "tool_versions": {
+    "python": "3.9.6",
+    "platform": "macOS-27.2.1-arm64-arm-64bit"
+  },
+  "boundary_table": [
+    {
+      "case": "smallest_valid_input (position=1)",
+      "precondition": "Line 42: currency = currencies[currency_index]",
+      "input": {
+        "position": 1,
+        "currencies_count": 3
+      },
+      "expected": {
+        "name": "US Dollar",
+        "short": "USD"
+      },
+      "actual": {
+        "name": "US Dollar",
+        "short": "USD"
+      },
+      "status": "PASS"
+    },
+    {
+      "case": "ordinary_input (position=2)",
+      "precondition": "Line 42: currency = currencies[currency_index]",
+      "input": {
+        "position": 2,
+        "currencies_count": 3
+      },
+      "expected": {
+        "name": "Euro",
+        "short": "EUR"
+      },
+      "actual": {
+        "name": "Euro",
+        "short": "EUR"
+      },
+      "status": "PASS"
+    },
+    {
+      "case": "upper_boundary (position=len(currencies))",
+      "precondition": "Line 42: currency = currencies[currency_index]",
+      "input": {
+        "position": 3,
+        "currencies_count": 3
+      },
+      "expected": {
+        "name": "British Pound",
+        "short": "GBP"
+      },
+      "actual": {
+        "name": "British Pound",
+        "short": "GBP"
+      },
+      "status": "PASS"
+    },
+    {
+      "case": "rejected_lower_boundary (position=0)",
+      "precondition": "1 <= position <= len(currencies)",
+      "input": {
+        "position": 0
+      },
+      "expected": "IndexError",
+      "actual": "IndexError",
+      "status": "PASS"
+    },
+    {
+      "case": "rejected_upper_boundary (position=len(currencies)+1)",
+      "precondition": "1 <= position <= len(currencies)",
+      "input": {
+        "position": 4
+      },
+      "expected": "IndexError",
+      "actual": "IndexError",
+      "status": "PASS"
+    }
+  ],
+  "runner_output": "test_boundary_above_upper_limit_rejected (test_exchange_rates.TestExchangeRatesBoundaries)\nRejected boundary: position = len(currencies) + 1. ... ok\ntest_boundary_below_lower_limit_rejected (test_exchange_rates.TestExchangeRatesBoundaries)\nRejected boundary: position = 0 (below valid 1-based range). ... ok\ntest_html_parsing_anchor_current_element (test_exchange_rates.TestExchangeRatesBoundaries)\nTests parsing of options into currencies list. ... ok\ntest_negative_position_rejected (test_exchange_rates.TestExchangeRatesBoundaries)\nRejected boundary: negative position (e.g. -1). ... ok\ntest_ordinary_input (test_exchange_rates.TestExchangeRatesBoundaries)\nOrdinary input: position = 2. ... ok\ntest_parse_exchange_table (test_exchange_rates.TestExchangeRatesBoundaries)\nTests parsing exchange rate table data. ... ok\ntest_smallest_valid_input (test_exchange_rates.TestExchangeRatesBoundaries)\nSmallest valid boundary: position = 1 (1-based indexing). ... ok\ntest_upper_boundary_input (test_exchange_rates.TestExchangeRatesBoundaries)\nUpper valid boundary: position = len(currencies). ... ok\n\n----------------------------------------------------------------------\nRan 8 tests in 0.001s\n\nOK\n"
+}
