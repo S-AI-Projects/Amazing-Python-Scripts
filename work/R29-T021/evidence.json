@@ -1,0 +1,81 @@
+{
+  "task_id": "R29-T021",
+  "command": "python3 work/R29-T021/check.py",
+  "target_file": "PDF-Watermark/pdf-watermark.py",
+  "test_count": 3,
+  "failures": 0,
+  "errors": 0,
+  "successful": true,
+  "tool_versions": {
+    "python": "3.9.6",
+    "platform": "macOS-27.2.1-arm64-arm-64bit"
+  },
+  "cases": [
+    {
+      "case": "smallest_valid_input",
+      "precondition_cites": [
+        "Line 24: input_file",
+        "Line 25: watermark_file",
+        "Line 27: getPage(0)"
+      ],
+      "inputs": {
+        "input_pages": 1,
+        "watermark_pages": 1
+      },
+      "expected": {
+        "page_count": 1,
+        "merged_pages": [
+          "mark_p0"
+        ]
+      },
+      "actual": {
+        "page_count": 1,
+        "merged_pages": [
+          "mark_p0"
+        ]
+      },
+      "status": "PASS"
+    },
+    {
+      "case": "ordinary_input",
+      "precondition_cites": [
+        "Line 24: input_file",
+        "Line 25: watermark_file",
+        "Line 27: getPage(0)"
+      ],
+      "inputs": {
+        "input_pages": 3,
+        "watermark_pages": 1
+      },
+      "expected": {
+        "page_count": 3,
+        "merged_pages_count": 3
+      },
+      "actual": {
+        "page_count": 3,
+        "merged_pages_count": 3
+      },
+      "status": "PASS"
+    },
+    {
+      "case": "boundary_multi_page_watermark",
+      "precondition_cites": [
+        "Line 27: mark.getPage(0) selects only page 0"
+      ],
+      "inputs": {
+        "input_pages": 2,
+        "watermark_pages": 2
+      },
+      "expected": {
+        "page_count": 2,
+        "merged_with": "watermark_page_0"
+      },
+      "actual": {
+        "page_count": 2,
+        "merged_with": "watermark_page_0"
+      },
+      "status": "PASS"
+    }
+  ],
+  "runner_output": "test_domain_boundary_multi_page_watermark_uses_page_zero (test_watermark.TestPDFWatermarkContract)\nBoundary condition: Watermark PDF has multiple pages (e.g. 2 pages). ... ok\ntest_ordinary_input (test_watermark.TestPDFWatermarkContract)\nOrdinary input: 3-page document with 1 watermark page. ... ok\ntest_smallest_valid_input (test_watermark.TestPDFWatermarkContract)\nSmallest valid input: 1-page document with 1 watermark page. ... ok\n\n----------------------------------------------------------------------\nRan 3 tests in 0.011s\n\nOK\n"
+}
