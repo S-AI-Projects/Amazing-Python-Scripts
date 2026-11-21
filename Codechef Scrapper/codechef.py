@@ -26,6 +26,28 @@ problem_difficulty = {"Beginner": "school", "Easy": "easy",
 
 
 def get_problems(category, no_of_problems):
+    """
+    Scrape problem names and URLs for a given difficulty category.
+
+    Contract:
+    Preconditions:
+    - Line 18: baseurl = "https://www.codechef.com/problems" establishes target base endpoint.
+    - Line 19: wait = WebDriverWait(driver, 15) establishes web wait handler.
+    - Lines 22-23: problem_difficulty = {"Beginner": "school", "Easy": "easy",
+      "Medium": "medium", "Hard": "hard", "Challenge": "challenge"} maps difficulty labels to slugs.
+    - Line 31: problem_info = {} initializes local problem mapping dictionary.
+
+    Inputs:
+    - category (str): Category slug (e.g. 'school', 'easy', 'medium', 'hard', 'challenge').
+    - no_of_problems (int): Number of problems to scrape (non-negative integer).
+
+    Outputs:
+    - problem_info (dict[str, str]): Dictionary mapping problem names to URLs.
+
+    Mutations:
+    - Does not mutate global problem_difficulty dictionary.
+    - Mutating returned problem_info does not mutate module state.
+    """
 
     # A map to store problem name and problem url
     problem_info = {}
