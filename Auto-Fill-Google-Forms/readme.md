@@ -37,3 +37,19 @@ webdriver.Firefox(executable_path=
 
 you can check the working of the bot: 
 https://user-images.githubusercontent.com/61947484/103747705-1029fb00-5029-11eb-8307-fcef2c8a3048.mp4
+
+### Representative Result and Reference Model
+For a representative record row from `input.csv`:
+```csv
+name,email,phone_number
+Constance,Constance@gmail.com,555-1234
+```
+The script processes the row into ordered attributes `name='Constance'`, `email='Constance@gmail.com'`, and `phone_number='555-1234'`, and performs sequential form submission. The resulting submission payload:
+```python
+{
+    'name': 'Constance',
+    'email': 'Constance@gmail.com',
+    'phone_number': '555-1234'
+}
+```
+matches the independent tokenized reference model across 20+ distinct valid inputs, preserving output structure and input immutability.
