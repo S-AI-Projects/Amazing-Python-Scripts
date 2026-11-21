@@ -1,14 +1,24 @@
 import random
 
 
+def format_row(board, c1, c2, c3):
+    """Format a 3-cell board row with vertical bar delimiters.
+
+    Extracts the row-formatting calculation responsibility from display_board.
+    Cells c1, c2, c3 correspond to board positions (e.g. from winning_combinations row triplets).
+    """
+    return f'| {board[c1]} | {board[c2]} | {board[c3]} |'
+
+
 def display_board(board):
-    print('-------------')
-    print('| ' + board[7] + ' | ' + board[8] + ' | ' + board[9] + ' |')
-    print('-------------')
-    print('| ' + board[4] + ' | ' + board[5] + ' | ' + board[6] + ' |')
-    print('-------------')
-    print('| ' + board[1] + ' | ' + board[2] + ' | ' + board[3] + ' |')
-    print('-------------')
+    separator = '-------------'
+    print(separator)
+    print(format_row(board, 7, 8, 9))
+    print(separator)
+    print(format_row(board, 4, 5, 6))
+    print(separator)
+    print(format_row(board, 1, 2, 3))
+    print(separator)
 
 
 def player_input():
@@ -113,4 +123,5 @@ def play_tic_tac_toe():
 
 
 # Start the game
-play_tic_tac_toe()
+if __name__ == '__main__':
+    play_tic_tac_toe()
