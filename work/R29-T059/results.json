@@ -1,0 +1,116 @@
+{
+  "task": "R29-T059",
+  "item": "Data-Visualization",
+  "target_file": "Data-Visualization/HeatMap/heat_maps.py",
+  "complexity_statement": {
+    "input_size_variable": "N = rows * columns (total matrix elements)",
+    "theoretical_worst_case_time": "O(N) = O(R * C) matrix generation + O(R + C) labels",
+    "theoretical_worst_case_space": "O(N) = O(R * C) 2D grid allocation",
+    "empirical_observation": "Runtime and operation count scale linearly with N across tested sizes (N=25, 400, 2500)"
+  },
+  "preconditions": {
+    "line_4_seed": "np.random.seed(42)",
+    "lines_7_8_dimensions": "rows = 5, columns = 3",
+    "line_10_randint": "np.random.randint(low=0, high=50, size=(columns, rows))",
+    "lines_15_16_labels": "x=[Product i for i in range(rows)], y=[Type i for i in range(columns)]"
+  },
+  "fixtures": {
+    "smallest_valid_input": {
+      "rows": 1,
+      "columns": 1,
+      "N": 1,
+      "expected_shape": [
+        1,
+        1
+      ],
+      "expected_x_labels": [
+        "Product 0"
+      ],
+      "expected_y_labels": [
+        "Type 0"
+      ]
+    },
+    "ordinary_input": {
+      "rows": 5,
+      "columns": 3,
+      "N": 15,
+      "expected_shape": [
+        3,
+        5
+      ],
+      "expected_x_len": 5,
+      "expected_y_len": 3
+    }
+  },
+  "benchmark_scaling": [
+    {
+      "size_name": "small",
+      "rows": 5,
+      "columns": 5,
+      "N_elements": 25,
+      "operation_count_matrix_elements": 25,
+      "operation_count_labels": 10,
+      "repetitions": 5,
+      "runs_sec": [
+        1.6999998479150236e-05,
+        9.958002920029685e-06,
+        8.875002095010132e-06,
+        8.791997970547527e-06,
+        8.75000114319846e-06
+      ],
+      "median_sec": 8.875002095010132e-06,
+      "min_sec": 8.75000114319846e-06,
+      "max_sec": 1.6999998479150236e-05,
+      "range_sec": 8.249997335951775e-06,
+      "correctness_verified": true
+    },
+    {
+      "size_name": "medium",
+      "rows": 20,
+      "columns": 20,
+      "N_elements": 400,
+      "operation_count_matrix_elements": 400,
+      "operation_count_labels": 40,
+      "repetitions": 5,
+      "runs_sec": [
+        4.2584000766510144e-05,
+        4.199999966658652e-05,
+        4.1749997762963176e-05,
+        4.141599856666289e-05,
+        4.8541001888224855e-05
+      ],
+      "median_sec": 4.199999966658652e-05,
+      "min_sec": 4.141599856666289e-05,
+      "max_sec": 4.8541001888224855e-05,
+      "range_sec": 7.125003321561962e-06,
+      "correctness_verified": true
+    },
+    {
+      "size_name": "large",
+      "rows": 50,
+      "columns": 50,
+      "N_elements": 2500,
+      "operation_count_matrix_elements": 2500,
+      "operation_count_labels": 100,
+      "repetitions": 5,
+      "runs_sec": [
+        0.00020766700254171155,
+        0.0002343339983781334,
+        0.00021562500114669092,
+        0.00022458399689639919,
+        0.00021758300135843456
+      ],
+      "median_sec": 0.00021758300135843456,
+      "min_sec": 0.00020766700254171155,
+      "max_sec": 0.0002343339983781334,
+      "range_sec": 2.6666995836421847e-05,
+      "correctness_verified": true
+    }
+  ],
+  "python_version": "3.15.2 (v3.15.2:5e58eaad7c5, Oct 25 2026, 14:19:34) [Clang 21.0.0 (clang-2100.1.1.101)]",
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "tests_run": 5,
+  "errors": 0,
+  "failures": 0,
+  "successful": true
+}

@@ -1,0 +1,30 @@
+Task: R29-T059 Check Results
+Target: Data-Visualization/HeatMap/heat_maps.py
+Python: 3.15.2 (v3.15.2:5e58eaad7c5, Oct 25 2026, 14:19:34) [Clang 21.0.0 (clang-2100.1.1.101)]
+Platform: macOS-26.6.2-arm64-arm-64bit-Mach-O
+Tests run: 5
+Failures: 0
+Errors: 0
+Status: PASSED
+
+Output:
+test_module_level_attributes_preserved (tests.test_heat_maps.TestHeatMapComplexity.test_module_level_attributes_preserved)
+Verify that default module-level attributes match original script. ... ok
+test_ordinary_input (tests.test_heat_maps.TestHeatMapComplexity.test_ordinary_input)
+Precondition: Lines 7-8 establish default rows = 5, columns = 3. ... ok
+test_scaling_correctness_across_increasing_sizes (tests.test_heat_maps.TestHeatMapComplexity.test_scaling_correctness_across_increasing_sizes)
+Verify correctness across 3 increasing benchmark sizes (N = 25, 400, 2500). ... ok
+test_seed_reproducibility (tests.test_heat_maps.TestHeatMapComplexity.test_seed_reproducibility)
+Verify that identical seeds produce identical matrix outputs. ... ok
+test_smallest_valid_input (tests.test_heat_maps.TestHeatMapComplexity.test_smallest_valid_input)
+Precondition: Line 7-8 define rows and columns as positive integers. ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.000s
+
+OK
+
+Benchmark Metrics:
+- Size small (N=25): median=8.88 µs, range=8.25 µs (min=8.75 µs, max=17.00 µs)
+- Size medium (N=400): median=42.00 µs, range=7.13 µs (min=41.42 µs, max=48.54 µs)
+- Size large (N=2500): median=217.58 µs, range=26.67 µs (min=207.67 µs, max=234.33 µs)
