@@ -1,0 +1,41 @@
+{
+  "task": "R29-T058",
+  "item": "Color Guess-GUI",
+  "target_file": "Color Guess-GUI/Color_guess.py",
+  "target_function": "start_game",
+  "data_anchors": {
+    "source_lines_colors_name": "Lines 4-5: colors_name = ['Red', 'White', 'Yellow', 'Pink', 'Blue', 'Black', 'Brown', 'Purple', 'Green', 'Cyan']",
+    "source_lines_initial_state": "Lines 6-7: score = 0, time_left = 60",
+    "source_line_active_branch": "Line 11: if time_left == 60: countdown()",
+    "source_line_absent_result_branch": "Line 19: if (time_left > 0): in change_color()",
+    "source_line_rejection_branch": "Line 21: if e.get().lower() == colors_name[1].lower():",
+    "source_line_countdown_branch": "Line 32: if time_left > 0: in countdown()"
+  },
+  "fixtures": {
+    "smallest_valid_input_absent_result": {
+      "play": null,
+      "time_left": 0,
+      "score": 0,
+      "expected_return": null,
+      "expected_score_after": 0,
+      "expected_time_left_after": 0,
+      "expected_e_text_after": "White"
+    },
+    "ordinary_valid_input_active": {
+      "play": null,
+      "time_left": 60,
+      "score": 0,
+      "entry_input": "White",
+      "expected_return": null,
+      "expected_score_after": 1,
+      "expected_time_left_after": 59,
+      "expected_e_text_after": ""
+    }
+  },
+  "python_version": "3.15.2 (v3.15.2:5e58eaad7c5, Oct 25 2026, 14:19:34) [Clang 21.0.0 (clang-2100.1.1.101)]",
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "tests_run": 6,
+  "errors": 0,
+  "failures": 0,
+  "successful": true
+}
