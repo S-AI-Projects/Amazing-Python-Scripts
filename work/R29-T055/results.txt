@@ -1,0 +1,43 @@
+Focused CPU temperature get_cpu_temperature repeatability checks
+Requested check command: python3 work/R29-T055/check.py
+Native test command: /Library/Frameworks/Python.framework/Versions/3.15/bin/python3 -m unittest discover -s CPU temperature/tests -p test_temp.py -v
+Test configuration: Standard-library unittest discovery runner with injected sensor seam.
+Target: CPU temperature/temp.py (get_cpu_temperature)
+Python version: 3.15.2 (v3.15.2:5e58eaad7c5, Oct 25 2026, 14:19:34) [Clang 21.0.0 (clang-2100.1.1.101)]
+Unittest version: standard library bundled with this Python version
+Platform: macOS-26.6.2-arm64-arm-64bit-Mach-O
+Nonzero test count: 5
+Test process exit code: 0
+
+Source Preconditions and Anchors:
+- Line 15 (original) / 29: temperature = psutil.sensors_temperatures()['coretemp'][0].current
+- Lines 17-19 (original) / 31-33: exception handling returning 'NA'
+- Lines 9-33: get_cpu_temperature(sensors_fn=None) dependency seam
+
+Repeatability and Determinism Tests Summary:
+1. test_smallest_valid_input: single sensor reading at 0.0 C -> returns 0.0
+2. test_ordinary_input: multi-core reading [55.5, 58.0] -> returns 55.5
+3. test_sensors_unavailable_returns_na_sentinel: empty sensor dict -> returns 'NA'
+4. test_repeatability_and_state_isolation: verifies runs twice in fresh state and once after another input
+5. test_default_dependency_seam_preserves_callers: zero-argument call preserves callers using default seam
+
+Test Runner Output:
+ordinary_input: fixture={'coretemp': [shwtemp(current=55.5), shwtemp(current=58.0)]}, expected=55.5, actual=55.5
+repeatability_check: verified 3 runs with perfect result consistency and isolation!
+unavailable_sensors: fixture={}, expected='NA', actual='NA'
+smallest_valid: fixture={'coretemp': [shwtemp(current=0.0)]}, expected=0.0, actual=0.0
+test_default_dependency_seam_preserves_callers (test_temp.TestGetCpuTemperatureRepeatability.test_default_dependency_seam_preserves_callers)
+Verify that get_cpu_temperature() called without arguments defaults gracefully ... ok
+test_ordinary_input (test_temp.TestGetCpuTemperatureRepeatability.test_ordinary_input)
+Ordinary input: Multi-core sensor readings (55.5 C, 58.0 C). ... ok
+test_repeatability_and_state_isolation (test_temp.TestGetCpuTemperatureRepeatability.test_repeatability_and_state_isolation)
+Step 3 Requirement: ... ok
+test_sensors_unavailable_returns_na_sentinel (test_temp.TestGetCpuTemperatureRepeatability.test_sensors_unavailable_returns_na_sentinel)
+Fallback boundary: empty sensor dict returns 'NA'. ... ok
+test_smallest_valid_input (test_temp.TestGetCpuTemperatureRepeatability.test_smallest_valid_input)
+Smallest valid input: Single sensor reading at 0.0 C. ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.000s
+
+OK

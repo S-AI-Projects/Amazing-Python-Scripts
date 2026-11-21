@@ -1,0 +1,15 @@
+{
+  "task": "R29-T055",
+  "item": "CPU temperature",
+  "target_file": "CPU temperature/temp.py",
+  "target_function": "get_cpu_temperature",
+  "tool_versions": {
+    "python": "3.15.2 (v3.15.2:5e58eaad7c5, Oct 25 2026, 14:19:34) [Clang 21.0.0 (clang-2100.1.1.101)]",
+    "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O"
+  },
+  "tests_run": 5,
+  "exit_code": 0,
+  "success": true,
+  "repeatability_verified": true,
+  "dependency_seam": "sensors_fn=None defaulting to psutil.sensors_temperatures"
+}
