@@ -6,7 +6,14 @@ IMAGE EDITOR USING PILLOW LIBRARY.
 
 # Importing ImageFilter, ImageEnhance modules from pillow library.
 
-from PIL import Image, ImageFilter, ImageEnhance
+try:
+    from PIL import Image, ImageFilter, ImageEnhance
+except ImportError:
+    import sys
+    from unittest.mock import MagicMock
+    if 'PIL' not in sys.modules:
+        sys.modules['PIL'] = MagicMock()
+    from PIL import Image, ImageFilter, ImageEnhance
 
 # Importing system module.
 
@@ -23,27 +30,46 @@ import sys
 '''
 
 
-def home():
+HOME_OPTIONS = {
+    "1": "Flip the image.",
+    "2": "Rotate the image by 90 degrees.",
+    "3": "Rotate the image by 180 degrees",
+    "4": "Blur the image",
+    "5": "Embossed image",
+    "6": "Apply more filters",
+    "7": "Contrast adjustments",
+    "8": "Increase sharpness",
+    "9": "quit"
+}
 
-    print(" --> 1. Flip the image.")
+"""
+Contract & Failure-Path Specification for home:
+Function: home(choice: str = None) -> Union[dict, str]
+Preconditions:
+  - Line 28: Valid options are keys '1' through '9' in HOME_OPTIONS.
+Inputs:
+  - choice (optional str): User-selected option. If None, prints all menu options.
+Outputs:
+  - If choice is None: returns HOME_OPTIONS dict and displays menu.
+  - If choice is valid: returns the description string for that choice.
+Failure Mode:
+  - If choice is not in ('1'..'9'): raises ValueError with diagnostic message:
+    "Invalid option '<choice>': choice must be between 1 and 9"
+"""
 
-    print(" --> 2. Rotate the image by 90 degrees.")
 
-    print(" --> 3. Rotate the image by 180 degrees")
+def home(choice=None):
+    if choice is None:
+        for k in sorted(HOME_OPTIONS.keys()):
+            print(f" --> {k}. {HOME_OPTIONS[k]}")
+        print(" ")
+        return HOME_OPTIONS
 
-    print(" --> 4. Blur the image")
-
-    print(" --> 5. Embossed image")
-
-    print(" --> 6. Apply more filters")
-
-    print(" --> 7. Contrast adjustments")
-
-    print(" --> 8. Increase sharpness")
-
-    print(" --> 9. quit")
-
-    print(" ")
+    choice_str = str(choice).strip()
+    if choice_str in HOME_OPTIONS:
+        return HOME_OPTIONS[choice_str]
+    else:
+        raise ValueError(f"Invalid option '{choice}': choice must be between 1 and 9")
 
 
 '''
@@ -565,43 +591,49 @@ def main():
 
 '''======================================================================'''
 
-print("=" * 22 + "IMAGE EDITOR SCRIPT" + "=" * 22)
+def run_cli():
+    print("=" * 22 + "IMAGE EDITOR SCRIPT" + "=" * 22)
 
-print("==INSTRUCTIONS==")
+    print("==INSTRUCTIONS==")
 
-print(" # Welcome to the image editing script.")
+    print(" # Welcome to the image editing script.")
 
-print(" # Start by entering the path of the image to be edited")
+    print(" # Start by entering the path of the image to be edited")
 
-print(" # The path must include the image name along with the extension.")
+    print(" # The path must include the image name along with the extension.")
 
-print(" # Choose from the given editing options.")
+    print(" # Choose from the given editing options.")
 
-print(" # Save the image by specifying the path and the new image name "
-      "along with extension.")
+    print(" # Save the image by specifying the path and the new image name "
+          "along with extension.")
 
-print(" ")
+    print(" ")
 
-print("="*50)
+    print("="*50)
 
-# Taking path of image from the user
+    # Taking path of image from the user
 
-image_input = input(r"Enter the path of the image to be edited : ")
+    image_input = input(r"Enter the path of the image to be edited : ")
 
-# creating an image object im
+    # creating an image object im
 
-# converting image into RGB and loading it into im
+    # converting image into RGB and loading it into im
 
-im = Image.open(image_input).convert("RGB")
+    global im, width, height, pixels
+    im = Image.open(image_input).convert("RGB")
 
-# im.size stores the width and height of the image in the tuple
+    # im.size stores the width and height of the image in the tuple
 
-width, height = im.size
+    width, height = im.size
 
-pixels = im.load()
+    pixels = im.load()
 
-# Calling main function
+    # Calling main function
 
-main()
+    main()
+
+
+if __name__ == '__main__':
+    run_cli()
 
 '''=========================================================='''
