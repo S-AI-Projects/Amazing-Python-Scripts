@@ -1,0 +1,20 @@
+{
+  "task": "R29-T051",
+  "item": "Codechef Scrapper",
+  "target_file": "Codechef Scrapper/codechef.py",
+  "target_function": "get_problems",
+  "tool_versions": {
+    "python": "3.15.2 (v3.15.2:5e58eaad7c5, Oct 25 2026, 14:19:34) [Clang 21.0.0 (clang-2100.1.1.101)]",
+    "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O"
+  },
+  "tests_run": 5,
+  "exit_code": 0,
+  "success": true,
+  "preconditions": [
+    "Line 18: baseurl = 'https://www.codechef.com/problems'",
+    "Line 19: wait = WebDriverWait(driver, 15)",
+    "Lines 22-23: problem_difficulty = {'Beginner': 'school', 'Easy': 'easy', 'Medium': 'medium', 'Hard': 'hard', 'Challenge': 'challenge'}",
+    "Line 31 (original) / 53: problem_info = {}",
+    "Lines 63-71 (original 41-48): problem_info[problem_name] = problem_url"
+  ]
+}

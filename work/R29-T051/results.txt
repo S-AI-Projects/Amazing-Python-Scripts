@@ -1,0 +1,45 @@
+Focused Codechef Scrapper get_problems contract and regression checks
+Requested check command: python3 work/R29-T051/check.py
+Native test command: /Library/Frameworks/Python.framework/Versions/3.15/bin/python3 -m unittest discover -s Codechef Scrapper/tests -p test_codechef.py -v
+Test configuration: Standard-library unittest discovery runner with mocked Selenium webdriver and FPDF.
+Target: Codechef Scrapper/codechef.py (get_problems)
+Python version: 3.15.2 (v3.15.2:5e58eaad7c5, Oct 25 2026, 14:19:34) [Clang 21.0.0 (clang-2100.1.1.101)]
+Unittest version: standard library bundled with this Python version
+Platform: macOS-26.6.2-arm64-arm-64bit-Mach-O
+Nonzero test count: 5
+Test process exit code: 0
+
+Source Precondition and Fixture Anchors:
+- Line 18: baseurl = 'https://www.codechef.com/problems'
+- Line 19: wait = WebDriverWait(driver, 15)
+- Lines 22-23: problem_difficulty = {'Beginner': 'school', 'Easy': 'easy', 'Medium': 'medium', 'Hard': 'hard', 'Challenge': 'challenge'}
+- Line 31 (original) / 53: problem_info = {}
+- Lines 63-71 (original 41-48): table scraping loop, key assignment problem_info[problem_name] = problem_url
+
+Test Cases Summary:
+1. test_smallest_valid_input: category='school', no_of_problems=1 -> expected {'ATM': 'https://www.codechef.com/problems/HS08TEST'}
+2. test_ordinary_input: category='easy', no_of_problems=2 -> expected 2 problem items mapping names to links
+3. test_repeated_value_domain_boundary: category='medium', no_of_problems=2 with duplicate names -> key deduplication preserves latest URL
+4. test_zero_problems_boundary: category='school', no_of_problems=0 -> returns empty dict {} matching anchor problem_info = {}
+5. test_observable_mutation_and_state_isolation: verifies problem_difficulty unmutated and return dict is caller-isolated
+
+Test Runner Output:
+ordinary_input: input=('easy', 2), expected={'CIELAB': 'https://www.codechef.com/problems/CIELAB', 'HORSES': 'https://www.codechef.com/problems/HORSES'}, actual={'CIELAB': 'https://www.codechef.com/problems/CIELAB', 'HORSES': 'https://www.codechef.com/problems/HORSES'}
+repeated_value_boundary: input=('medium', 2), expected={'DUPLICATE_NAME': 'https://www.codechef.com/problems/VER2'}, actual={'DUPLICATE_NAME': 'https://www.codechef.com/problems/VER2'}
+smallest_valid: input=('school', 1), expected={'ATM': 'https://www.codechef.com/problems/HS08TEST'}, actual={'ATM': 'https://www.codechef.com/problems/HS08TEST'}
+zero_problems_boundary: input=('school', 0), expected={}, actual={}
+test_observable_mutation_and_state_isolation (test_codechef.TestGetProblemsContract.test_observable_mutation_and_state_isolation)
+Mutation test: ... ok
+test_ordinary_input (test_codechef.TestGetProblemsContract.test_ordinary_input)
+Ordinary input: category='easy' (Easy), no_of_problems=2. ... ok
+test_repeated_value_domain_boundary (test_codechef.TestGetProblemsContract.test_repeated_value_domain_boundary)
+Repeated-value domain boundary: duplicate problem names in table rows. ... ok
+test_smallest_valid_input (test_codechef.TestGetProblemsContract.test_smallest_valid_input)
+Smallest valid input: category='school' (Beginner), no_of_problems=1. ... ok
+test_zero_problems_boundary (test_codechef.TestGetProblemsContract.test_zero_problems_boundary)
+Boundary condition: no_of_problems=0. ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.002s
+
+OK
