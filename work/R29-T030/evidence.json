@@ -1,0 +1,21 @@
+{
+  "task_id": "R29-T030",
+  "command": "python3 work/R29-T030/check.py",
+  "target_file": "Automated Script/Script.py",
+  "test_count": 4,
+  "failures": 0,
+  "errors": 0,
+  "successful": true,
+  "tool_versions": {
+    "python": "3.9.6",
+    "platform": "macOS-27.2.1-arm64-arm-64bit"
+  },
+  "mutation_proof": {
+    "protected_condition": "Directory hierarchy preservation via os.path.relpath(source_file, source_dir)",
+    "plausible_mutant": "destination_file = os.path.join(destination_dir, file) [flattens subdirectories]",
+    "original_result": "PASS (nested path exists in destination)",
+    "mutant_result": "FAIL (nested path missing in destination)",
+    "semantic_reason": "Mutant strips parent directory prefixes, destroying folder hierarchy."
+  },
+  "runner_output": "test_mutant_fails_nested_hierarchy_check (test_script.TestAutomatedBackupMutation)\nProves mutation resistance: ... ok\ntest_nonexistent_source_directory_returns_none (test_script.TestAutomatedBackupMutation)\nPrecondition: Line 24 (if not os.path.exists(source_dir): return None). ... ok\ntest_ordinary_input_nested_hierarchy (test_script.TestAutomatedBackupMutation)\nOrdinary input: Multiple files across root and nested subdirectories. ... ok\ntest_smallest_valid_input (test_script.TestAutomatedBackupMutation)\nSmallest valid input: Single file in root of source directory. ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 0.011s\n\nOK\n"
+}
