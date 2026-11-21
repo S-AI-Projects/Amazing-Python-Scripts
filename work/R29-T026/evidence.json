@@ -1,0 +1,90 @@
+{
+  "task_id": "R29-T026",
+  "command": "python3 work/R29-T026/check.py",
+  "target_file": "imageWatermarker/main.py",
+  "test_count": 5,
+  "failures": 0,
+  "errors": 0,
+  "successful": true,
+  "tool_versions": {
+    "python": "3.9.6",
+    "platform": "macOS-27.2.1-arm64-arm-64bit"
+  },
+  "characterisation_checks": [
+    {
+      "case": "smallest_valid_input",
+      "preconditions": "Line 36 (image_files = []), Line 42 (output_path)",
+      "input": {
+        "im_size": [
+          100,
+          100
+        ],
+        "mark_size": [
+          20,
+          20
+        ]
+      },
+      "expected": {
+        "position": [
+          30,
+          30
+        ],
+        "target_size": [
+          2048,
+          2048
+        ]
+      },
+      "actual": {
+        "position": [
+          30,
+          30
+        ],
+        "target_size": [
+          2048,
+          2048
+        ]
+      },
+      "status": "PASS"
+    },
+    {
+      "case": "ordinary_input",
+      "input": {
+        "im_size": [
+          4000,
+          3000
+        ],
+        "mark_size": [
+          400,
+          200
+        ]
+      },
+      "expected": {
+        "position": [
+          3550,
+          2750
+        ],
+        "target_size": [
+          2048,
+          1536
+        ]
+      },
+      "actual": {
+        "position": [
+          3550,
+          2750
+        ],
+        "target_size": [
+          2048,
+          1536
+        ]
+      },
+      "status": "PASS"
+    },
+    {
+      "case": "characterisation_equivalence",
+      "assertion": "compute_watermark_geometry matches original inline formula across all tested aspect ratios",
+      "status": "PASS"
+    }
+  ],
+  "runner_output": "test_apply_watermark_and_resize_output_shape (test_main.TestImageWatermarkerRefactoring)\nUnit test verifying resized composite image dimensions. ... ok\ntest_characterisation_before_and_after_equivalence (test_main.TestImageWatermarkerRefactoring)\nCharacterisation test asserting exact equivalence between original formula and extracted helper. ... ok\ntest_folder_select_and_run_default_call (test_main.TestImageWatermarkerRefactoring)\nVerifies FolderSelectAndRun invokes batch with default signature gracefully. ... ok\ntest_ordinary_input_geometry (test_main.TestImageWatermarkerRefactoring)\nOrdinary input: High-resolution photo (4000, 3000), watermark (400, 200). ... ok\ntest_smallest_valid_input_geometry (test_main.TestImageWatermarkerRefactoring)\nSmallest valid input: Image (100, 100), watermark (20, 20). ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 0.004s\n\nOK\n"
+}
