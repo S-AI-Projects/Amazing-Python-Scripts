@@ -1,0 +1,27 @@
+Task: R29-T056 Check Results
+Target: AI TicTacToe/TicTacToe.py
+Python: 3.15.2 (v3.15.2:5e58eaad7c5, Oct 25 2026, 14:19:34) [Clang 21.0.0 (clang-2100.1.1.101)]
+Platform: macOS-26.6.2-arm64-arm-64bit-Mach-O
+Tests run: 6
+Failures: 0
+Errors: 0
+Status: PASSED
+
+Output:
+test_before_after_behavioral_equivalence (tests.test_tic_tac_toe.TestDisplayBoard.test_before_after_behavioral_equivalence)
+Verify that extracted format_row produces byte-for-byte identical output ... ok
+test_display_board_does_not_mutate_board (tests.test_tic_tac_toe.TestDisplayBoard.test_display_board_does_not_mutate_board)
+Verify display_board is a pure read-only operation and does not mutate the board. ... ok
+test_format_row_extracted_calculation (tests.test_tic_tac_toe.TestDisplayBoard.test_format_row_extracted_calculation)
+Test the extracted responsibility: format_row(board, c1, c2, c3). ... ok
+test_ordinary_input (tests.test_tic_tac_toe.TestDisplayBoard.test_ordinary_input)
+Precondition: Board with in-progress gameplay markers placed via place_marker (lines 23-24). ... ok
+test_row_triplets_match_winning_combinations (tests.test_tic_tac_toe.TestDisplayBoard.test_row_triplets_match_winning_combinations)
+Data Anchor: Verify that the 3 rows printed by display_board correspond to ... ok
+test_smallest_valid_input (tests.test_tic_tac_toe.TestDisplayBoard.test_smallest_valid_input)
+Precondition: Line 63 establishes the smallest valid board representation: ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.000s
+
+OK
