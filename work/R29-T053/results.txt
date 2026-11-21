@@ -1,0 +1,44 @@
+Focused Auto-Fill-Google-Forms reference comparison checks
+Requested check command: python3 work/R29-T053/check.py
+Native test command: /Library/Frameworks/Python.framework/Versions/3.15/bin/python3 -m unittest discover -s Auto-Fill-Google-Forms/tests -p test_auto_fill.py -v
+Test configuration: Standard-library unittest discovery runner with mocked Selenium browser.
+Target: Auto-Fill-Google-Forms/readme.md and test.py
+Python version: 3.15.2 (v3.15.2:5e58eaad7c5, Oct 25 2026, 14:19:34) [Clang 21.0.0 (clang-2100.1.1.101)]
+Unittest version: standard library bundled with this Python version
+Platform: macOS-26.6.2-arm64-arm-64bit-Mach-O
+Nonzero test count: 5
+Test process exit code: 0
+
+Source Preconditions and Anchors:
+- Lines 6-8: XPath constants inputName, inputEmailID, inputPhone
+- Line 11: Submit button XPath
+- Line 27: csv_input = csv.DictReader(f_input)
+- Lines 28-31: row['name'], row['email'], row['phone_number']
+- Lines 36-45: Submission loop over records
+
+Differential Test Cases Summary:
+1. test_smallest_valid_input: 1 row CSV -> matches independent reference oracle payload
+2. test_ordinary_input: input.csv with 6 rows -> matches independent reference oracle
+3. test_differential_twenty_domain_inputs: 25 distinct valid inputs verified against oracle
+4. test_input_mutation_isolation: verifies input record lists are not mutated
+5. test_browser_automation_interactions: verifies mocked browser send_keys, click, and back calls
+
+Test Runner Output:
+differential_twenty_domain_inputs: tested 25 inputs, all match independent oracle!
+ordinary_input: rows=6, first_actual={'name': 'Constance', 'email': 'Constance@gmail.com', 'phone_number': '555-1234'}, first_expected={'name': 'Constance', 'email': 'Constance@gmail.com', 'phone_number': '555-1234'}
+smallest_valid: input=1 row, expected=[{'name': 'Alice', 'email': 'alice@example.com', 'phone_number': '1234'}], actual=[{'name': 'Alice', 'email': 'alice@example.com', 'phone_number': '1234'}]
+test_browser_automation_interactions (test_auto_fill.AutoFillGoogleFormsCrossCheckTests.test_browser_automation_interactions)
+Verify browser automation interactions (send_keys, click, back) with mocked browser. ... ok
+test_differential_twenty_domain_inputs (test_auto_fill.AutoFillGoogleFormsCrossCheckTests.test_differential_twenty_domain_inputs)
+Cross-check against independent oracle across 25 diverse valid inputs. ... ok
+test_input_mutation_isolation (test_auto_fill.AutoFillGoogleFormsCrossCheckTests.test_input_mutation_isolation)
+Verify that fill_form_records does not mutate input lists. ... ok
+test_ordinary_input (test_auto_fill.AutoFillGoogleFormsCrossCheckTests.test_ordinary_input)
+Ordinary input: input.csv file containing 6 student records. ... ok
+test_smallest_valid_input (test_auto_fill.AutoFillGoogleFormsCrossCheckTests.test_smallest_valid_input)
+Smallest valid input: CSV with 1 header and 1 record. ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.001s
+
+OK
