@@ -1,0 +1,43 @@
+Focused Number Guess Game invariant property checks
+Requested check command: python3 work/R29-T054/check.py
+Native test command: /Library/Frameworks/Python.framework/Versions/3.15/bin/python3 -m unittest discover -s Number-Guess-Game/tests -p test_number_guess.py -v
+Test configuration: Standard-library unittest discovery runner with seeded property generator.
+Target: Number-Guess-Game/numberguess.py
+Python version: 3.15.2 (v3.15.2:5e58eaad7c5, Oct 25 2026, 14:19:34) [Clang 21.0.0 (clang-2100.1.1.101)]
+Unittest version: standard library bundled with this Python version
+Platform: macOS-26.6.2-arm64-arm-64bit-Mach-O
+Nonzero test count: 5
+Test process exit code: 0
+
+Source Preconditions and Invariant Anchors:
+- Lines 5-10: top_of_range validation (positive integer requirement)
+- Line 15: random.randint(0, top_of_range) target boundedness
+- Lines 18-35: Guessing loop and monotonic comparison feedback
+- Line 36: Final guess counter report
+
+Mathematical and Behavioral Invariants Verified:
+1. Target Boundedness: 0 <= random_number <= top_of_range
+2. Comparison Monotonicity: guess > target -> above, guess < target -> below, guess == target -> correct
+3. Guess Counter Invariant: reported guesses == total guess loop iterations taken
+4. Seeded Property Verification: 100 random bounded cases verified with seed 42
+5. Mutation Sensitivity: deliberate mutant breaking feedback/counter fails assertions
+
+Test Runner Output:
+ordinary_input: top_of_range=10, target=7, guesses=['3', '8', '7'], guesses_count=3
+smallest_valid: top_of_range=1, target=1, guess=['1'], expected={'random_number': 1, 'guesses': 1, 'feedback': ['You got it! '], 'summary': 'You got it in 1 guesses'}, actual={'random_number': 1, 'guesses': 1, 'feedback': ['You got it! '], 'summary': 'You got it in 1 guesses'}
+property_test_100_cases: 100 bounded cases successfully verified against invariants!
+test_deliberate_mutant_fails_invariant (test_number_guess.NumberGuessGameInvariantTests.test_deliberate_mutant_fails_invariant)
+Verify that a deliberate mutant breaking the invariant fails the property test, ... ok
+test_input_mutation_isolation (test_number_guess.NumberGuessGameInvariantTests.test_input_mutation_isolation)
+Verify that run_game does not mutate caller's input lists. ... ok
+test_ordinary_input (test_number_guess.NumberGuessGameInvariantTests.test_ordinary_input)
+Ordinary input: top_of_range = 10, target = 7, guesses = ["3", "8", "7"]. ... ok
+test_smallest_valid_input (test_number_guess.NumberGuessGameInvariantTests.test_smallest_valid_input)
+Smallest valid input: top_of_range = 1, target = 1, guess = 1. ... ok
+test_target_boundedness_and_feedback_monotonicity_100_cases (test_number_guess.NumberGuessGameInvariantTests.test_target_boundedness_and_feedback_monotonicity_100_cases)
+Property Test: 100 bounded valid cases with fixed seed (seed = 42). ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.000s
+
+OK
