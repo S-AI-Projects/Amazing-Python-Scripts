@@ -1,0 +1,31 @@
+Task: R29-T060 Check Results
+Target: Video-To-Audio(CLI-Ver)/video_to_audio.py
+Python: 3.15.2 (v3.15.2:5e58eaad7c5, Oct 25 2026, 14:19:34) [Clang 21.0.0 (clang-2100.1.1.101)]
+Platform: macOS-26.6.2-arm64-arm-64bit-Mach-O
+Tests run: 8
+Failures: 0
+Errors: 0
+Status: PASSED
+
+Output:
+test_cli_argument_parsing (tests.test_video_to_audio.TestVideoToAudioMutationResistance.test_cli_argument_parsing)
+Verify CLI argument parsing structure defined at lines 4-10. ... ok
+test_deliberate_mutant_destination_swap_fails_assertion (tests.test_video_to_audio.TestVideoToAudioMutationResistance.test_deliberate_mutant_destination_swap_fails_assertion)
+Mutation Resistance Check: ... ok
+test_deliberate_mutant_error_suppression_fails_assertion (tests.test_video_to_audio.TestVideoToAudioMutationResistance.test_deliberate_mutant_error_suppression_fails_assertion)
+Mutation Resistance Check 2: ... ok
+test_input_mutation_behavior (tests.test_video_to_audio.TestVideoToAudioMutationResistance.test_input_mutation_behavior)
+Invariant: Caller-owned input arguments must not be mutated. ... ok
+test_missing_audio_track_fails_cleanly (tests.test_video_to_audio.TestVideoToAudioMutationResistance.test_missing_audio_track_fails_cleanly)
+Precondition: Line 15 expects Video_clip.audio to exist. ... ok
+test_ordinary_input (tests.test_video_to_audio.TestVideoToAudioMutationResistance.test_ordinary_input)
+Precondition: Lines 6-9 full absolute file paths. ... ok
+test_protected_destination_binding (tests.test_video_to_audio.TestVideoToAudioMutationResistance.test_protected_destination_binding)
+Protected Condition: Line 15 binds write_audiofile strictly to audio_path. ... ok
+test_smallest_valid_input (tests.test_video_to_audio.TestVideoToAudioMutationResistance.test_smallest_valid_input)
+Precondition: Line 6-7 requires video_file; Line 8-9 requires audio_path. ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.008s
+
+OK

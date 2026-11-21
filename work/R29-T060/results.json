@@ -1,0 +1,55 @@
+{
+  "task": "R29-T060",
+  "item": "Video-To-Audio(CLI-Ver)",
+  "target_file": "Video-To-Audio(CLI-Ver)/video_to_audio.py",
+  "function_tested": "convert_video_to_audio",
+  "protected_conditions": [
+    "Destination parameter binding: audio stream must be written strictly to audio_path (line 15)",
+    "Error handling sentinel: exceptions during loading or conversion must return False (lines 16-17)"
+  ],
+  "deliberate_mutants_evaluated": [
+    {
+      "description": "Mutant 1: Destination path swap - writing to video_file instead of audio_path",
+      "mutated_line": "clip.audio.write_audiofile(video_file)",
+      "named_assertion": "self.assertEqual(clip.audio.written_path, target_audio)",
+      "original_result": "PASS",
+      "mutant_result": "FAIL (AssertionError: source != target)"
+    },
+    {
+      "description": "Mutant 2: Error return suppression - returning True on exception catch",
+      "mutated_line": "except Exception: return True",
+      "named_assertion": "self.assertFalse(result)",
+      "original_result": "PASS",
+      "mutant_result": "FAIL (AssertionError: True is not false)"
+    }
+  ],
+  "preconditions": {
+    "source_line_video_file_arg": "Line 6-7: -v/--videoFile required argument",
+    "source_line_audio_path_arg": "Line 8-9: -p/--path required argument",
+    "source_line_clip_loading": "Line 14: Video_clip = pyeditor.VideoFileClip(args['videoFile'])",
+    "source_line_audio_writing": "Line 15: Video_clip.audio.write_audiofile(args['path'])",
+    "source_line_error_handling": "Lines 16-17: except Exception: print('Error!!! Something is worng.')"
+  },
+  "fixtures": {
+    "smallest_valid_input": {
+      "video_file": "v.mp4",
+      "audio_path": "a.mp3",
+      "expected_return": true,
+      "expected_written_destination": "a.mp3",
+      "expected_output": ""
+    },
+    "ordinary_input": {
+      "video_file": "/media/videos/holiday_presentation.mp4",
+      "audio_path": "/media/audio/holiday_soundtrack.mp3",
+      "expected_return": true,
+      "expected_written_destination": "/media/audio/holiday_soundtrack.mp3",
+      "expected_output": ""
+    }
+  },
+  "python_version": "3.15.2 (v3.15.2:5e58eaad7c5, Oct 25 2026, 14:19:34) [Clang 21.0.0 (clang-2100.1.1.101)]",
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "tests_run": 8,
+  "errors": 0,
+  "failures": 0,
+  "successful": true
+}
